@@ -13,3 +13,31 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap";
+
+.main-visual {
+  width: 100%;
+  height: 300px;
+  background-image: image-url('22042947_s.jpg');
+  position: relative;
+}
+
+.main-visual-content {
+  top: 30%;
+  left: 40%;
+  color: #fff;
+  padding: 1em;
+  background: rgba(0,0,0,.6);
+  position: absolute;
+}
+
+body {
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
+  padding-top: 80px;
+}
+
+main {
+  flex: 1;
+}

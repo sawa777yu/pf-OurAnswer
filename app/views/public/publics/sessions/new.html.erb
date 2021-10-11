@@ -1,0 +1,30 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-11 offset-md-1' >
+      <br><br>
+    <h4>ログイン</h4><br>
+    
+      <h5>登録済みの方はこちらからログイン</h5><br>
+      
+        <%= form_with model: @user, url: user_session_path, local: true do |f| %>
+          <div class="col-md-9 offset-md-1">
+            <%= f.label :メールアドレス %><br>
+              <%= f.email_field :email,class: 'form-control', autofocus: true, autocomplete: "email" %><br>
+              <%= f.label :パスワード %>
+              <%= f.password_field :password,class: 'form-control', autocomplete: "current-password" %><br>
+            <% if devise_mapping.rememberable? %>
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %><br>
+              <%= f.submit "ログイン",class: 'btn btn-primary btn' %>
+            <% end %>
+          </div>
+
+            
+        <% end %><br><br>
+      
+      <h5>ユーザー登録がお済みでない方</h5>
+
+      <%= link_to 'こちら', new_user_registration_path %>　から新規登録を行って下さい。
+    </div>
+  </div>
+</div>

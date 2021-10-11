@@ -1,0 +1,43 @@
+<table class='table'>
+  <tr>
+    <th>ユーザー情報</th>
+  </tr>
+  <tr>
+    <th>
+  	  <%= link_to user_path(user) do %>
+        <%= attachment_image_tag user, :profile_image, fallback: "no_image.jpg", size:'160x150' %>
+      <% end %>
+    </th>
+  </tr>
+  <tr>
+	  <th><%= user.name %>@<%= user.our_answers_id %></th>
+  </tr>
+  <tr>
+	  <th>フォロー数</th>
+	  <th>
+  	  <%#= link_to user_followings_path(user) do %>
+    	  <%#= user.follower_of_relationships.count %>
+  	  <%# end %>
+	  </th>
+  </tr>
+  <tr>
+	  <th>フォロワー数</th>
+	  <th>
+  	  <%#= link_to user_followers_path(user) do %>
+  	    <%#= user.followed_of_relationships.count %>
+  	  <%# end %>
+  	</th>
+  </tr>
+
+  <tr>
+	  <th style="white-space: pre-line;">プロフィール
+	    <%= user.introduction %></th>
+	  <!--長文が縦長に表示されるのをなんとかしたい-->
+  </tr>
+</table>
+
+<div class='row'>
+  <% if user.id == current_user.id %>
+    <%= link_to '編集する',edit_user_path(user),class: "btn btn-success btn-block" %>
+  <% end %>
+</div>
