@@ -1,0 +1,73 @@
+<% if @post.errors.any? %>
+  <%= @post.errors.count %>件のエラーが発生しました<br/>
+  <% @post.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="row my-4">
+        <div class="col-md-2 text-center">
+          <h5 class="bg-light" >記事編集</h5>
+        </div>
+      </div>
+      <%= form_with model: @post, local: true do |f| %>
+      <div class="row offset-md-2 mb-2">
+        <div class="col-md-2">
+          参考記事URL
+        </div>
+        <div class="col">
+          <%= f.text_field :reference_url, size: "40" %>
+        </div>
+      </div>
+      <div class="row offset-md-2 mb-2">
+        <div class="col-md-2">
+          ジャンル
+        </div>
+        <div class="col">
+          <%= f.collection_select :genre_id, @genres, :id, :name %>
+        </div>
+      </div>
+      <div class="row offset-md-2 mb-2">
+        <div class="col-md-2">
+          投稿タイトル
+        </div>
+        <div class="col">
+          <%= f.text_field :title, size: "40" %>
+        </div>
+      </div>
+      <div class="row offset-md-2 mb-2">
+        <div class="col-md-2">
+          投稿内容詳細
+        </div>
+        <div class="col">
+          <%= f.text_area :body, size: "40x8" %>
+        </div>
+      </div>
+      <div class="row offset-md-2 mb-2">
+        <div class="col-md-2">
+          参考記事評価
+        </div>
+        <!--<div class="col">-->
+          <%#= f.text_field :ex_unit_price,placeholder: "1000", size: "40" %>
+        <!--</div>-->
+      </div>
+      <div class="row offset-md-2 mb-3">
+        <div class="col-md-2">
+          公開ステータス
+        </div>
+        <div class="col-md-8">
+          <%= f.radio_button :release,true, checked: true %>
+          <%= f.label :release, '公開', value: true %>
+          <%= f.radio_button :release,false %>
+          <%= f.label :release, '非公開', value: false %>
+        </div>
+      </div>
+      <div class="text-center">
+        <%= f.submit "変更を保存", class: 'btn btn-success' %>
+      </div>
+        <% end %>
+    </div>
+  </div>
+</div>
