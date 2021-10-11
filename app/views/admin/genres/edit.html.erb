@@ -1,0 +1,20 @@
+<div class="container-field">
+  <div class='row mx-5 my-4'>
+    <div class='col-md-2'>
+      <h5 class="bg-light text-center">ジャンル編集</h5>
+    </div>
+  </div>
+  <%= form_with model: [:admin, @genre],method: :patch, local: true do |f| %>
+  <div class="row m-4">
+    <div class="col-md-1 ml-2">
+      <%= "ジャンル名" %>
+    </div>
+    <div class="col-md-2 ml-2">
+      <%= f.text_field :name %>
+    </div>
+    <div class="col-md-0">
+      <%= f.submit "変更を保存", class: 'btn btn-success' %>
+    </div>
+  </div>
+  <% end %>
+</div>

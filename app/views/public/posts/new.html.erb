@@ -1,0 +1,76 @@
+<% if @post.errors.any? %>
+  <%= @post.errors.count %>件のエラーが発生しました<br/>
+  <% @post.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+<div class="container_field">
+  <div class="row">
+    <div class="col-md-2">
+      <%= render 'public/users/info', user: current_user %> 
+    </div>
+    <div class="col">
+      <div class="row my-4">
+        <div class="col-md-2 text-center">
+          <h5 class="bg-light" >記事投稿</h5>
+        </div>
+      </div>
+      <%= form_with model: @post, local: true do |f| %>
+      <div class="row offset-md-2 mb-2">
+        <div class="col-md-2">
+          参考記事URL
+        </div>
+        <div class="col">
+          <%= f.text_field :reference_url,placeholder: "URL", size: "40" %>
+        </div>
+      </div>
+      <div class="row offset-md-2 mb-2">
+        <div class="col-md-2">
+          ジャンル
+        </div>
+        <div class="col">
+          <%= f.collection_select :genre_id, @genres, :id, :name, include_blank: "--選択してください--" %>
+        </div>
+      </div>
+      <div class="row offset-md-2 mb-2">
+        <div class="col-md-2">
+          投稿タイトル
+        </div>
+        <div class="col">
+          <%= f.text_field :title,placeholder: "投稿タイトル", size: "40" %>
+        </div>
+      </div>
+      <div class="row offset-md-2 mb-2">
+        <div class="col-md-2">
+          投稿内容詳細
+        </div>
+        <div class="col">
+          <%= f.text_area :body,placeholder: "どのような記事で、どのような問題が、どのように解決しましたか", size: "40x8" %>
+        </div>
+      </div>
+      <div class="row offset-md-2 mb-2">
+        <div class="col-md-2">
+          参考記事評価
+        </div>
+        <!--<div class="col">-->
+          <%#= f.text_field :ex_unit_price,placeholder: "1000", size: "40" %>
+        <!--</div>-->
+      </div>
+      <div class="row offset-md-2 mb-3">
+        <div class="col-md-2">
+          公開ステータス
+        </div>
+        <div class="col-md-8">
+          <%= f.radio_button :release,true, checked: true %>
+          <%= f.label :release, '公開', value: true %>
+          <%= f.radio_button :release,false %>
+          <%= f.label :release, '非公開', value: false %>
+        </div>
+      </div>
+      <div class="text-center">
+        <%= f.submit "新規登録", class: 'btn btn-success btn-lg' %>
+      </div>
+        <% end %>
+    </div>
+  </div>  
+</div>
