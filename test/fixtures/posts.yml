@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  genre_id: 1
+  reference_url: MyString
+
+two:
+  genre_id: 1
+  reference_url: MyString

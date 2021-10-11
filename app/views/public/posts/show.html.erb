@@ -1,0 +1,58 @@
+<div class="container_field">
+  <div class="row ml-5">
+    <div class="col-md-2">
+      <%= render 'public/users/info', user: @user %>
+    </div>
+    <div class="col">
+      <div class="row my-4">
+        <div class="col-md-2 text-center">
+          <h5 class="bg-light" >記事詳細</h5>
+        </div>
+      </div>
+      <div class="row offset-md-2 mb-2">
+        <div class="col-md-2">
+          参考記事URL
+        </div>
+        <div class="col">
+          <%= @post.reference_url %>
+        </div>
+      </div>
+      <div class="row offset-md-2 mb-2">
+        <div class="col-md-2">
+          ジャンル
+        </div>
+        <div class="col">
+          <%= @post.genre.name %>
+        </div>
+      </div>
+      <div class="row offset-md-2 mb-2">
+        <div class="col-md-2">
+          投稿タイトル
+        </div>
+        <div class="col">
+          <%= @post.title %>
+        </div>
+      </div>
+      <div class="row offset-md-2 mb-2">
+        <div class="col-md-2">
+          投稿内容詳細
+        </div>
+        <div class="col">
+          <%= @post.body %>
+        </div>
+      </div>
+      <div class="row offset-md-2 mb-2">
+        <div class="col-md-2">
+          参考記事への<br />
+          投稿者からの評価
+        </div>
+        <!--<div class="col">-->
+          <%#= f.text_field :ex_unit_price,placeholder: "1000", size: "40" %>
+        <!--</div>-->
+      </div>
+      <div class="text-center">
+        <%= link_to "投稿記事編集", edit_post_path, class: 'btn btn-primary btn-sm' %>
+      </div>
+    </div>
+  </div>
+</div>
