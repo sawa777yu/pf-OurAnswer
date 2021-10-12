@@ -1,0 +1,32 @@
+<div class='comment-index'>
+  <table class='table'>
+    <% post.post_comments.each do |post_comment| %>
+      <div>
+        <%= link_to user_path(post_comment.user_id),remote: true do %>
+          <%= attachment_image_tag post_comment.user, :profile_image, :fill, 50, 50, fallback: "no-image-icon.jpg" %>
+        <% end %>
+        <%= post_comment.comment %>
+        <% if post_comment.user == current_user %>
+        <%= link_to "Destroy", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "btn btn-sm btn-danger destroy_post_comment_#{@post.id}",remote: true %>
+        <% end %><br />
+        <%= link_to user_path(post_comment.user_id),remote: true do %>
+          <%= post_comment.user.name %>
+        <% end %>
+    <% end %>
+    </div>
+  </table>
+    <div id="error_explanation">
+    <% if @post_comment.errors.any? %>
+      <h3><%= post_comment.errors.count %>errors prohibited this obj from being saved:</h3>
+      <ul>
+      <% post_commnet.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    <% end %>
+    </div>
+    <%= form_with(model:[@post, @post_comment]) do |f| %>
+      <%= f.text_area :comment, rows:'5', cols:'80',placeholder: "コメントはこちらから" %><br />
+      <%= f.submit "送信" %>
+    <% end %>
+</div>
