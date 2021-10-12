@@ -15,17 +15,17 @@
   <tr>
 	  <th>フォロー数</th>
 	  <th>
-  	  <%#= link_to user_followings_path(user) do %>
-    	  <%#= user.follower_of_relationships.count %>
-  	  <%# end %>
+  	  <%= link_to user_followings_path(user) do %>
+    	  <%= user.follower_of_relationships.count %>
+  	  <% end %>
 	  </th>
   </tr>
   <tr>
 	  <th>フォロワー数</th>
 	  <th>
-  	  <%#= link_to user_followers_path(user) do %>
-  	    <%#= user.followed_of_relationships.count %>
-  	  <%# end %>
+  	  <%= link_to user_followers_path(user) do %>
+  	    <%= user.followed_of_relationships.count %>
+  	  <% end %>
   	</th>
   </tr>
 
@@ -39,5 +39,9 @@
 <div class='row'>
   <% if user.id == current_user.id %>
     <%= link_to '編集する',edit_user_path(user),class: "btn btn-success btn-block" %>
-  <% end %>
+  <% elsif current_user.following?(user) %>
+   <%= link_to "フォローを外す", user_relationship_path(user.id), method: :delete,class: "btn btn-primary btn-block" %>
+  <% else %>
+   <%= link_to "フォローする", user_relationships_path(user.id), method: :post,class: "btn btn-success btn-block" %>
+  <% end %>  
 </div>
