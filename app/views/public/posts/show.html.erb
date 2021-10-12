@@ -53,6 +53,19 @@
       <div class="text-center">
         <%= link_to "投稿記事編集", edit_post_path, class: 'btn btn-primary btn-sm' %>
       </div>
+      <div class="row offset-md-2 mb-2">
+        <div class="col-md-2">
+          参考記事または<br />
+          本記事へのコメント
+        </div>
+        <div class="col">
+          <%= render 'public/post_comments/comment', post: @post, post_comment: @post_comment %>
+          <%#= form_with(model:[@post, @post_comment], local: true) do |f| %>
+            <%#= f.text_area :comment, rows:'5',placeholder: "参考記事または本投稿へのコメント" %>
+            <%#= f.submit "コメント・評価投稿" %>
+          <%# end %>
+        </div>
+      </div>      
     </div>
   </div>
 </div>
