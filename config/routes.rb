@@ -19,7 +19,7 @@ Rails.application.routes.draw do
         get 'confirm'
         patch 'withdraw'
       end
-      resources :relationships, only: [:cretate, :destroy]
+      resources :relationships, only: [:create, :destroy] 
       get 'followings', to: 'relationships#followings', as: 'followings'
       get 'followers', to: 'relationships#followers', as: 'followers'
     end
@@ -28,8 +28,8 @@ Rails.application.routes.draw do
       collection do
         get 'bookmarks'
       end
-      resources :bookmarks, only: [:cretate, :destroy]
-      resources :comments, only: [:cretate, :destroy]
+      resources :bookmarks, only: [:create, :destroy]
+      resources :post_comments, only: [:create, :destroy]
     end
   end
 
