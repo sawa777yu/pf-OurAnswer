@@ -8,6 +8,9 @@
         <div class="col-md-2 text-center">
           <h5 class="bg-light" >記事詳細</h5>
         </div>
+          <td class="bookmark_form_<%= @post.id %>">
+            <%= render 'public/bookmarks/bookmark_form', post: @post %>
+          </td>
       </div>
       <div class="row offset-md-2 mb-2">
         <div class="col-md-2">
