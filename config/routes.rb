@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   }
 
   root to: 'public/homes#top'
-  # get 'search', to: 'searches/search'
+  get 'search', to: 'searches#search'
 
   scope module: :public do
     resources :users, only: [:edit, :update, :show] do
@@ -25,9 +25,7 @@ Rails.application.routes.draw do
     end
 
     resources :posts, except: [:index, :destroy] do
-      collection do
-        get 'bookmarks'
-      end
+      get :bookmarks, on: :collection
       resources :bookmarks, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
     end
