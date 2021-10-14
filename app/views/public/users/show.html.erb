@@ -15,7 +15,7 @@
             <thead class='table-secondary'>
               <tr>
                 <!--scopeのサイズ調整ができていない-->
-                <th scope="col-md-2">投稿日時</th>
+                <th scope="col-md-1">投稿日時</th>
                 <th scope="col-md-1">ジャンル</th>
                 <th scope="col-md-6">タイトル</th>
                 <th scope="col-md-1"></th>
@@ -26,7 +26,7 @@
               <!--非公開記事について自分のは見れるように、他人のはみれないように-->
               <% @posts.each do |post| %>
                 <tr id="post_<%= post.id %>">
-                  <td><%= post.created_at %></td>
+                  <td><%= l post.created_at %></td>
                   <td><%= post.genre.name %></td>
                   <td><%= link_to post.title, post_path(post.id), class: "post_#{post.id}" %></td>
                   <td>

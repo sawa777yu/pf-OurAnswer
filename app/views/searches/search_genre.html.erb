@@ -1,0 +1,28 @@
+ <h4>ジャンル "<%= @genre.name %>" での検索結果</h4>
+ <table class='table table-hover table-inverse'>
+  <thead>
+    <tr>
+      <th>投稿者</th>
+      <th>投稿日時</th>
+      <th>タイトル</th>
+      <th>記事詳細</th>
+      <th>参考記事url</th>
+      <th>bookmark</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @genre_records.each do |record| %>
+      <tr>
+        <td><%= link_to user_path(record.user) do %>
+          <%= attachment_image_tag(record.user, :profile_image, fallback: "no_image.jpg", size: "50x50") %>
+          <% end %>
+        </td>
+        <td><%= l record.created_at %></td>
+        <td><%= link_to record.title, post_path(record.id), class: "post_#{record.id}" %></td>
+        <td><%= record.body %></td>
+        <td><%= record.reference_url %></td>
+        <td><%= record.bookmarks.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

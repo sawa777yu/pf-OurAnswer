@@ -16,10 +16,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="/">Our Answer</a>
-        <form class="form-inline">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-warning my-2 my-sm-0" type="submit">Search</button>
-        </form>
+          <%= render 'searches/form' %>
         <div class="collapse navbar-collapse" id="navbarTogglerDropdown">
           <ul class="navbar-nav me-auto mb-7 mb-lg-0 offset-md-7">
             <% if user_signed_in? %>

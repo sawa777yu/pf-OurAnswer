@@ -35,7 +35,7 @@ class Public::PostsController < ApplicationController
       render "edit"
     end
   end
-  
+
   def bookmarks
     @posts = current_user.bookmark_posts.includes(:user).order(created_at: :desc)
   end
