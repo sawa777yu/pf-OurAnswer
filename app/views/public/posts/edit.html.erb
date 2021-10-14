@@ -49,9 +49,9 @@
         <div class="col-md-2">
           参考記事評価
         </div>
-        <!--<div class="col">-->
-          <%#= f.text_field :ex_unit_price,placeholder: "1000", size: "40" %>
-        <!--</div>-->
+        <div class="col">
+          <div class="post-rate" data-score="<%= @post.rate %>"></div>
+        </div>
       </div>
       <div class="row offset-md-2 mb-3">
         <div class="col-md-2">
@@ -71,3 +71,16 @@
     </div>
   </div>
 </div>
+
+<script>
+  $('.post-rate').raty({
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    half: true,
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    scoreName: 'post[rate]',
+  });
+</script>

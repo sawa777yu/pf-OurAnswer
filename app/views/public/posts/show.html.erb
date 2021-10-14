@@ -20,7 +20,7 @@
           <%= @post.reference_url %>
         </div>
       </div>
-      <div class="row offset-md-2 mb-2">
+      <div class="row offset-md-2 my-4">
         <div class="col-md-2">
           ジャンル
         </div>
@@ -28,7 +28,7 @@
           <%= @post.genre.name %>
         </div>
       </div>
-      <div class="row offset-md-2 mb-2">
+      <div class="row offset-md-2 my-4">
         <div class="col-md-2">
           投稿タイトル
         </div>
@@ -36,39 +36,49 @@
           <%= @post.title %>
         </div>
       </div>
-      <div class="row offset-md-2 mb-2">
+      <div class="row offset-md-2 mt-4 mb-2">
         <div class="col-md-2">
           投稿内容詳細
         </div>
+      </div>
+      <div class="row offset-md-2 mt-2 mb-4">
         <div class="col">
           <%= @post.body %>
         </div>
       </div>
       <div class="row offset-md-2 mb-2">
-        <div class="col-md-2">
-          参考記事への<br />
-          投稿者からの評価
+        <div class="col-md-3">
+          参考記事への投稿者からの評価
         </div>
-        <!--<div class="col">-->
-          <%#= f.text_field :ex_unit_price,placeholder: "1000", size: "40" %>
-        <!--</div>-->
+        <div class="col mb-4">
+          <div class="post-rate" data-score="<%= @post.rate %>"></div>
+        </div>
       </div>
       <div class="text-center">
         <%= link_to "投稿記事編集", edit_post_path, class: 'btn btn-primary btn-sm' %>
       </div>
-      <div class="row offset-md-2 mb-2">
-        <div class="col-md-2">
-          参考記事または<br />
-          本記事へのコメント
+      <div class="row offset-md-2 mt-4 mb-2">
+        <div class="col-md-5">
+          参考記事または本記事へのコメント・評価
         </div>
+      </div>
+      <div class="row offset-md-2 mt-2 mb-4">
         <div class="col">
           <%= render 'public/post_comments/comment', post: @post, post_comment: @post_comment %>
-          <%#= form_with(model:[@post, @post_comment], local: true) do |f| %>
-            <%#= f.text_area :comment, rows:'5',placeholder: "参考記事または本投稿へのコメント" %>
-            <%#= f.submit "コメント・評価投稿" %>
-          <%# end %>
         </div>
-      </div>      
+      </div>
     </div>
   </div>
 </div>
+
+
+
+<script>
+  $('.post-rate').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    path: '/assets/'
+  });
+</script>
