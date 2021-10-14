@@ -1,0 +1,23 @@
+<div class='row'>
+  <div class='col-md-3 mt-3'>
+    <h5 class="my-3">
+      新着記事
+    </h5>
+  </div>
+</div>
+<% posts.each do |post| %>
+  <div class='row'>
+    <div class='col-md-2'>
+      <%= l post.created_at %>
+    </div>
+    <div class='col-md-1'>
+      <%= post.genre.name %>
+    </div>
+    <div class='col-md-4 text-truncate'>
+      <%= link_to post.title, post_path(post.id) %>
+    </div>
+    <div class='col-md-2'>
+      ブックマーク数：<%= post.bookmarks.count %>
+    </div>
+  </div>
+<% end %>

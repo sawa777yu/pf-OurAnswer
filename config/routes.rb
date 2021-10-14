@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   root to: 'public/homes#top'
   get 'search', to: 'searches#search'
+  get 'search_genre', to: 'searches#search_genre'
 
   scope module: :public do
     resources :users, only: [:edit, :update, :show] do

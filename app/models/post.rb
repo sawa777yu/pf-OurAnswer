@@ -4,6 +4,8 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   has_many :bookmark_posts, through: :bookmarks, source: :post
+  has_many :bookmarked_users, through: :bookmarks, source: :user
+  
 
   def bookmarked_by?(user)
     bookmarks.where(user_id: user.id).exists?

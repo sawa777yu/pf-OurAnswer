@@ -7,7 +7,7 @@
 <div class="container_field">
   <div class="row">
     <div class="col-md-2">
-      <%= render 'public/users/info', user: current_user %> 
+      <%= render 'public/users/info', user: current_user %>
     </div>
     <div class="col">
       <div class="row my-4">
@@ -48,14 +48,6 @@
           <%= f.text_area :body,placeholder: "どのような記事で、どのような問題が、どのように解決しましたか", size: "40x8" %>
         </div>
       </div>
-      <div class="row offset-md-2 mb-2">
-        <div class="col-md-2">
-          参考記事評価
-        </div>
-        <!--<div class="col">-->
-          <%#= f.text_field :ex_unit_price,placeholder: "1000", size: "40" %>
-        <!--</div>-->
-      </div>
       <div class="row offset-md-2 mb-3">
         <div class="col-md-2">
           公開ステータス
@@ -67,10 +59,29 @@
           <%= f.label :release, '非公開', value: false %>
         </div>
       </div>
-      <div class="text-center">
+      <div class="row offset-md-2 mb-2">
+        <div class="col-md-2">
+          参考記事評価
+        </div>
+        <div class="col">
+          <div id="evaluate_stars"></div>
+        </div>
+      </div>
+      <div class="text-center action">
         <%= f.submit "新規登録", class: 'btn btn-success btn-lg' %>
       </div>
         <% end %>
     </div>
-  </div>  
+  </div>
 </div>
+
+
+<script>
+  $('#evaluate_stars').raty({
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    scoreName: 'post[rate]',
+    half: true,
+  });
+</script>

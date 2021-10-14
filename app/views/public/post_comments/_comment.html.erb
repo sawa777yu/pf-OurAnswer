@@ -1,32 +1,58 @@
 <div class='comment-index'>
   <table class='table'>
     <% post.post_comments.each do |post_comment| %>
-      <div>
-        <%= link_to user_path(post_comment.user_id),remote: true do %>
-          <%= attachment_image_tag post_comment.user, :profile_image, fallback: "no_image.jpg", size: "50x50" %>
-        <% end %>
-        <%= post_comment.comment %>
-        <% if post_comment.user == current_user %>
+    <div>
+      <%= link_to user_path(post_comment.user_id),remote: true do %>
+        <%= attachment_image_tag post_comment.user, :profile_image, fallback: "no_image.jpg", size: "50x50" %>
+      <% end %>
+      <%= post_comment.comment %>
+      <div class="post_comment-rate" data-score="<%= post_comment.rate %>"></div>
+      <% if post_comment.user == current_user %>
         <%= link_to "Destroy", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "btn btn-sm btn-danger destroy_post_comment_#{@post.id}",remote: true %>
-        <% end %><br />
-        <%= link_to user_path(post_comment.user_id),remote: true do %>
-          <%= post_comment.user.name %>
-        <% end %>
+      <% end %><br />
+      <%= link_to user_path(post_comment.user_id),remote: true do %>
+        <%= post_comment.user.name %>
+      <% end %>
     <% end %>
     </div>
+
   </table>
-    <div id="error_explanation">
-    <% if @post_comment.errors.any? %>
-      <h3><%= post_comment.errors.count %>errors prohibited this obj from being saved:</h3>
-      <ul>
+
+  <div id="error_explanation">
+  <% if @post_comment.errors.any? %>
+    <h3><%= post_comment.errors.count %>errors prohibited this obj from being saved:</h3>
+    <ul>
       <% post_commnet.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
-      </ul>
-    <% end %>
+    </ul>
+  <% end %>
+  </div>
+
+  <%= form_with(model:[@post, @post_comment]) do |f| %>
+    <%= f.text_area :comment, rows:'5', cols:'80',placeholder: "参考記事または本投稿へのコメント" %><br />
+    <div id="evaluate_stars"></div><br />
+    <div class="action">
+      <%= f.submit "送信", class: 'btn btn-success' %>
     </div>
-    <%= form_with(model:[@post, @post_comment]) do |f| %>
-      <%= f.text_area :comment, rows:'5', cols:'80',placeholder: "コメントはこちらから" %><br />
-      <%= f.submit "送信" %>
-    <% end %>
+  <% end %>
+
 </div>
+
+<script>
+  $('#evaluate_stars').raty({
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    scoreName: 'post_comment[rate]',
+    half: true,
+  });
+
+  $('.post_comment-rate').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    path: '/assets/'
+  });
+</script>
