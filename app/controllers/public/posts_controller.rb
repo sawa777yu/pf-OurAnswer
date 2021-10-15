@@ -36,10 +36,6 @@ class Public::PostsController < ApplicationController
     end
   end
 
-  def bookmarks
-    @posts = current_user.bookmark_posts.includes(:user).order(created_at: :desc)
-  end
-
   private
 
   def post_params

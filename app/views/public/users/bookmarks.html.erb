@@ -1,12 +1,12 @@
 <div class="container_field">
   <div class="row ml-5">
     <div class="col-md-2">
-      <%= render 'public/users/info', user: current_user %>
+      <%= render 'public/users/info', user: @user %>
     </div>
     <div class= "col-md-9">
       <div class='row my-1'>
         <div class='col-md-5'>
-          <h5 class="offset-md-1 bg-light text-center"><%= current_user.name %>様のブックマーク一覧</h5>
+          <h5 class="offset-md-1 bg-light text-center"><%= @user.name %>様のブックマーク一覧</h5>
         </div>
       </div>
       <div class='row mx-2'>
@@ -32,7 +32,8 @@
                     <% end %>
                   </td>
                   <td><%= l post.created_at %></td>
-                  <td><%= link_to post.title, post_path(post.id), class: "post_#{post.id}" %></td>
+                  <td class="text-truncate" style="max-width: 300px;"><%= link_to post.title, post_path(post.id), class: "post_#{post.id}" %></td>
+                  <!--tdにclass="text-truncate"を指定することでstyle="max-width: 300px;"の範囲内での文字列を省略-->
                   <td>
                     <% if post.release == true %>
                       <p class="text-success font-weight-bold">公開</p>
