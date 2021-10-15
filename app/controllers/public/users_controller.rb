@@ -28,6 +28,11 @@ class Public::UsersController < ApplicationController
     # フラッシュメッセージの表示がされていない。
     redirect_to root_path
   end
+  
+  def bookmarks
+    @user = User.find(params[:user_id])
+    @posts = @user.bookmark_posts.includes(:user).order(created_at: :desc)
+  end
 
   private
 
