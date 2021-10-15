@@ -1,2 +1,40 @@
-<h1>ここは管理者側のトップページ</h1>
-<h2>ここには登録済みのユーザー一覧が来る予定</h2>
+<div class='container'>
+  <div class='row my-4'>
+    <div class='col-md-2'>
+      <h5 class="bg-light text-center">ユーザー一覧</h5>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-md-12'>
+      <table class='table table-hover table-inverse'>
+        <thead  class='table-secondary'>
+          <tr>
+            <th scope="col-md-1">ユーザーID</th>
+            <th scope="col-md-4">ニックネーム@our_answers_id</th>
+            <th scope="col-md-1">メールアドレス</th>
+            <th scope="col-md-4">ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+          <tr>
+            <td><%= user.id %></td>
+            <td><%= link_to user.name + "@" + user.our_answers_id, admin_user_path(user.id) %></td>
+            <td><%= user.email %></td>
+            <td>
+              <% if user.is_deleted == true %>
+                <p class="text-secondary font-weight-bold">無効</p>
+              <% elsif user.is_deleted == false %>
+                <p class="text-success font-weight-bold">有効</p>
+              <% end %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <ul class="pagination justify-content-center">
+        <%= paginate @users %>
+      </ul>
+    </div>
+  </div>
+</div>
