@@ -20,14 +20,14 @@ Rails.application.routes.draw do
         get 'confirm'
         patch 'withdraw'
       end
-      resources :relationships, only: [:create, :destroy] 
+      get :bookmarks
+      resource :relationships, only: [:create, :destroy]
       get 'followings', to: 'relationships#followings', as: 'followings'
       get 'followers', to: 'relationships#followers', as: 'followers'
     end
 
     resources :posts, except: [:index, :destroy] do
-      get :bookmarks, on: :collection
-      resources :bookmarks, only: [:create, :destroy]
+      resource :bookmarks, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
     end
   end

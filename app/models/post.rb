@@ -3,7 +3,6 @@ class Post < ApplicationRecord
   belongs_to :user, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
-  has_many :bookmark_posts, through: :bookmarks, source: :post
   has_many :bookmarked_users, through: :bookmarks, source: :user
   
 
