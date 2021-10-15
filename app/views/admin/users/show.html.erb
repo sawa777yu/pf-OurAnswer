@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-2 my-4">
+      <h5 class="bg-light text-center">
+        <%= @user.name %>さんの会員詳細
+      </h5>
+    </div>
+  </div>
+    <div class="row">
+      <div class="col-md-5 mb-4 text-right">
+        <%= "ユーザーID" %>
+      </div>
+      <div class="col-md-5 offset-md-1 text-left">
+        <%= @user.id %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-5 mb-4 text-right">
+        <%= "ニックネーム" %>
+      </div>
+      <div class="col-md-5 offset-md-1 text-left">
+        <%= @user.name %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-5 mb-4 text-right">
+        <%= "OurAnswers ID" %>
+      </div>
+      <div class="col-md-5 offset-md-1 text-left">
+        <%= @user. our_answers_id %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-5 mb-4 text-right">
+        <%= "メールアドレス" %>
+      </div>
+      <div class="col-md-5 offset-md-1 text-left">
+        <%= @user.email %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-5 mb-4 text-right">
+        <%= "登録ステータス" %>
+      </div>
+      <div class="col-md-5 offset-md-1 text-left">
+        <% if @user.is_deleted == true %>
+          <p class="text-secondary font-weight-bold">無効</p>
+        <% elsif @user.is_deleted == false %>
+          <p class="text-success font-weight-bold">有効</p>
+        <% end %>
+      </div>
+    </div>
+  <div class="row">
+    <div class="col-md-2 offset-md-5">
+      <%= link_to "編集する", edit_admin_user_path(@user.id), class: "btn btn-success" %>
+    </div>
+  </div>
+</div>
