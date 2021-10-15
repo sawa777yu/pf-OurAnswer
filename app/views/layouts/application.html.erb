@@ -24,8 +24,8 @@
               <li><%= link_to '新規記事投稿', new_post_path,class: 'nav-link active' %></li>
               <li><%= link_to "ログアウト", destroy_user_session_path,class: 'nav-link active', method: :delete %></li>
             <% elsif admin_signed_in? %>
-              <li><%#= link_to 'ジャンル一覧', admins_genres_path,class: 'nav-link active' %></li>
-              <li><%#= link_to '会員一覧', admins_users_path,class: 'nav-link active' %></li>
+              <li><%= link_to 'ジャンル一覧', admin_genres_path,class: 'nav-link active' %></li>
+              <li><%= link_to '会員一覧', admin_root_path,class: 'nav-link active' %></li>
               <li><%= link_to "ログアウト", destroy_admin_session_path,class: 'nav-link active', method: :delete %></li>
             <% else %>
               <li><%= link_to "新規登録", new_user_registration_path,class: 'nav-link active' %></li>

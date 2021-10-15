@@ -31,7 +31,7 @@
                       <%= attachment_image_tag post.user, :profile_image, fallback: "no_image.jpg", size:'60x50' %>
                     <% end %>
                   </td>
-                  <td><%= post.created_at %></td>
+                  <td><%= l post.created_at %></td>
                   <td><%= link_to post.title, post_path(post.id), class: "post_#{post.id}" %></td>
                   <td>
                     <% if post.release == true %>
