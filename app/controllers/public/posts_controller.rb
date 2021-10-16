@@ -32,7 +32,7 @@ class Public::PostsController < ApplicationController
       redirect_to post_path(@post)
     else
       @genres = Genre.all
-      render "edit"
+      render 'edit'
     end
   end
 
@@ -41,5 +41,4 @@ class Public::PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:title, :body, :genre_id, :user_id, :reference_url, :release, :rate)
   end
-
 end
