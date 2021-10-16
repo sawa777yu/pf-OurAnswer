@@ -13,22 +13,21 @@ class Public::UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to user_path(@user)
     else
-      render "edit"
+      render 'edit'
     end
   end
 
-  def confirm
-  end
+  def confirm; end
 
   def withdraw
     @user = current_user
     @user.update(is_deleted: true)
     reset_session
-    flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
+    flash[:notice] = 'ありがとうございました。またのご利用を心よりお待ちしております。'
     # フラッシュメッセージの表示がされていない。
     redirect_to root_path
   end
-  
+
   def bookmarks
     @user = User.find(params[:user_id])
     @posts = @user.bookmark_posts.includes(:user).order(created_at: :desc)
@@ -39,5 +38,4 @@ class Public::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :our_answers_id, :email, :profile_image, :introduction)
   end
-
 end

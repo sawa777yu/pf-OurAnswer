@@ -1,5 +1,4 @@
 class Admin::UsersController < ApplicationController
-
   def show
     @user = User.find(params[:id])
   end
@@ -19,5 +18,4 @@ class Admin::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :our_answers_id, :email, :is_deleted)
   end
-
 end
