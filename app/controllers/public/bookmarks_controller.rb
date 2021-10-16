@@ -1,5 +1,4 @@
 class Public::BookmarksController < ApplicationController
-
   def create
     post = Post.find(params[:post_id])
     bookmark = current_user.bookmarks.new(post_id: post.id)
