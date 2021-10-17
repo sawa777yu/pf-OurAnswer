@@ -28,7 +28,9 @@
                 <tr id="post_<%= post.id %>">
                   <td><%= l post.created_at %></td>
                   <td><%= post.genre.name %></td>
-                  <td><%= link_to post.title, post_path(post.id), class: "post_#{post.id}" %></td>
+                  <td class="text-truncate" style="max-width: 300px;">
+                    <%= link_to post.title, post_path(post.id), class: "post_#{post.id}" %>
+                  </td>
                   <td>
                     <% if post.release == true %>
                       <p class="text-success font-weight-bold">公開</p>
@@ -36,13 +38,13 @@
                       <p class="text-secondary font-weight-bold">非公開</p>
                     <% end %>
                   </td>
-                  <td>ブックマーク数</td>
+                  <td><%= post.bookmarks.count %></td>
                 </tr>
               <% end %>
             </tbody>
           </table>
           <ul class="pagination justify-content-center">
-            <%#= paginate @posts %>
+            <%= paginate @posts %>
           </ul>
         </div>
       </div>
