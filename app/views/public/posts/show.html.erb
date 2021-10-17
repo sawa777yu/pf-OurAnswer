@@ -4,20 +4,20 @@
       <%= render 'public/users/info', user: @user %>
     </div>
     <div class="col">
-      <div class="row my-4">
+      <div class="row my-4 offset-md-2">
         <div class="col-md-2 text-center">
-          <h5 class="bg-light" >記事詳細</h5>
+          <h4 class="bg-light" >記事詳細</h5>
         </div>
-          <td class="bookmark_form_<%= @post.id %>">
-            <%= render 'public/bookmarks/bookmark_form', post: @post %>
-          </td>
+        <div class="col offset-md-2">
+          <%= render 'public/bookmarks/bookmark_form', post: @post %>
+        </div>
       </div>
       <div class="row offset-md-2 mb-2">
         <div class="col-md-2">
           参考記事URL
         </div>
         <div class="col">
-          <%= @post.reference_url %>
+          <%= Rinku.auto_link(@post.reference_url, :all, 'target="_blank"').html_safe %>
         </div>
       </div>
       <div class="row offset-md-2 my-4">
@@ -54,18 +54,27 @@
           <div class="post-rate" data-score="<%= @post.rate %>"></div>
         </div>
       </div>
+      <% if @user == current_user %>
       <div class="text-center">
         <%= link_to "投稿記事編集", edit_post_path, class: 'btn btn-primary btn-sm' %>
       </div>
+      <% end %>
       <div class="row offset-md-2 mt-4 mb-2">
         <div class="col-md-5">
           参考記事または本記事へのコメント・評価
         </div>
       </div>
       <div class="row offset-md-2 mt-2 mb-4">
-        <div class="col">
-          <%= render 'public/post_comments/comment', post: @post, post_comment: @post_comment %>
-        </div>
+        <% if user_signed_in? %>
+          <div class="col">
+            <%= render 'public/post_comments/comment', post: @post, post_comment: @post_comment %>
+          </div>
+        <% else %>
+          <div class="col m-3">
+            コメント・評価を行うにはログインが必要です。<br />
+            ユーザー登録がお済みでない方は画面上部「新規登録」よりお進みください。
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

@@ -5,7 +5,6 @@
       <th>投稿者</th>
       <th>投稿日時</th>
       <th>タイトル</th>
-      <th>記事詳細</th>
       <th>参考記事url</th>
       <th>bookmark</th>
     </tr>
@@ -18,9 +17,12 @@
           <% end %>
         </td>
         <td><%= l record.created_at %></td>
-        <td><%= link_to record.title, post_path(record.id), class: "post_#{record.id}" %></td>
-        <td><%= record.body %></td>
-        <td><%= record.reference_url %></td>
+        <td class="text-truncate" style="max-width: 300px;">
+          <%= link_to record.title, post_path(record.id), class: "post_#{record.id}" %>
+        </td>
+        <td class="text-truncate" style="max-width: 300px;">
+          <%= Rinku.auto_link(record.reference_url, :all, 'target="_blank"').html_safe %>
+        </td>
         <td><%= record.bookmarks.count %></td>
       </tr>
     <% end %>

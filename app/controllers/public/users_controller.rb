@@ -1,7 +1,7 @@
 class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts
+    @posts = @user.posts.page(params[:page]).per(10)
   end
 
   def edit
@@ -30,7 +30,7 @@ class Public::UsersController < ApplicationController
 
   def bookmarks
     @user = User.find(params[:user_id])
-    @posts = @user.bookmark_posts.includes(:user).order(created_at: :desc)
+    @posts = @user.bookmark_posts.includes(:user).order(created_at: :desc).page(params[:page]).per(10)
   end
 
   private
