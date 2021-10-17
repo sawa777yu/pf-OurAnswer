@@ -1,3 +1,5 @@
+<% if user_signed_in? %>
+
 <table class='table'>
   <tr>
     <th>ユーザー情報</th>
@@ -43,5 +45,18 @@
    <%= link_to "フォローを外す", user_relationships_path(user.id), method: :delete,class: "btn btn-primary btn-block" %>
   <% else %>
    <%= link_to "フォローする", user_relationships_path(user.id), method: :post,class: "btn btn-success btn-block" %>
-  <% end %>  
+  <% end %>
 </div>
+
+<% else %>
+
+<table class='table'>
+  <tr>
+    <th>ユーザー情報</th>
+  </tr>
+  <tr>
+    <td>ゲストユーザー様</td>
+  </tr>
+</table>
+
+<% end %>

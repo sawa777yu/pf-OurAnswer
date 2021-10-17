@@ -222,6 +222,7 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     rexml (3.2.5)
+    rinku (2.0.6)
     rubocop (1.22.1)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
@@ -330,6 +331,7 @@ DEPENDENCIES
   rails (~> 5.2.5)
   refile!
   refile-mini_magick
+  rinku
   rubocop
   rubocop-rails
   sass-rails (~> 5.0)
