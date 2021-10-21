@@ -19,7 +19,7 @@
         <a class="navbar-brand" href="/">Our Answer</a>
           <%= render 'searches/form' %>
         <div class="collapse navbar-collapse" id="navbarTogglerDropdown">
-          <ul class="navbar-nav me-auto mb-7 mb-lg-0 offset-md-6">
+          <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
               <li>
                 <%= link_to user_path(current_user),class: 'nav-link active' do %>
@@ -34,6 +34,11 @@
               <li>
                 <%= link_to destroy_user_session_path,class: 'nav-link active', method: :delete do %>
                   <i class="fas fa-sign-out-alt"></i> ログアウト
+                <% end %>
+              </li>
+              <li>
+                <%= link_to about_path,class: 'nav-link active' do %>
+                  <i class="fas fa-question-circle"></i> 当サイトについて
                 <% end %>
               </li>
             <% elsif admin_signed_in? %>
@@ -51,13 +56,19 @@
                   <i class="fas fa-sign-in-alt"></i> ログイン
                 <% end %>
               </li>
+              <li><%= link_to 'ゲストログイン(閲覧用)',guest_sign_in_users_path, class: "guest-login nav-link active", method: :post %></li>
+              <li>
+                <%= link_to about_path,class: 'nav-link active' do %>
+                  <i class="fas fa-question-circle"></i> 当サイトについて
+                <% end %>
+              </li>
             <% end %>
           </ul>
         </div>
       </div>
     </nav>
   </header>
-  <main>
+  <main class="background">
     <%= yield %>
   </main>
     <nav class="navbar navbar-expand-lg navbar-dark bg-info">
@@ -67,7 +78,7 @@
             <li class="nav-item">© 2021 Yuya Sawata</li>
           </ul>
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">お問い合わせはこちら＞</li>
+            <li class="nav-item">　　　　　お問い合わせはこちら＞</li>
           </ul>
         </div>
       </footer>

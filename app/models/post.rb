@@ -13,5 +13,4 @@ class Post < ApplicationRecord
   validates :reference_url, presence: true
   validates :title, presence: true
   validates :body, presence: true
-  validates :release, presence: true
 end

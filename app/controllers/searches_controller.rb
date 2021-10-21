@@ -1,9 +1,11 @@
 class SearchesController < ApplicationController
+
   def search
     @model = params[:model]
     @content = params[:content]
     @method = params[:method]
     @records = search_for(@model, @content, @method)
+    # .includes(:user, :genre)でN+1問題解消
   end
 
   def search_genre
@@ -29,20 +31,20 @@ class SearchesController < ApplicationController
       end
     elsif model == 'post'
       if method == 'perfect'
-        Post.where(title: content).or(Post.where(body: content).or(Post.where(reference_url: content)))
+        Post.where(title: content, release: true).or(Post.where(body: content, release: true).or(Post.where(reference_url: content, release: true)))
       elsif method == 'partial'
-        Post.where('title LIKE ?',
-                   '%' + content + '%').or(Post.where('body LIKE ?',
-                                                      '%' + content + '%').or(Post.where('reference_url LIKE ?',
+        Post.where('title LIKE ? and release=true',
+                   '%' + content + '%').or(Post.where('body LIKE ? and release=true',
+                                                      '%' + content + '%').or(Post.where('reference_url LIKE ? and release=true',
                                                                                          '%' + content + '%')))
       elsif method == 'forward'
-        Post.where('title LIKE ?',
-                   content + '%').or(Post.where('body LIKE ?',
-                                                content + '%').or(Post.where('reference_url LIKE ?', content + '%')))
+        Post.where('title LIKE ? and release=true',
+                   content + '%').or(Post.where('body LIKE ? and release=true',
+                                                content + '%').or(Post.where('reference_url LIKE ? and release=true', content + '%')))
       elsif method == 'backward'
-        Post.where('title LIKE ?',
-                   '%' + content).or(Post.where('body LIKE ?',
-                                                '%' + content).or(Post.where('reference_url LIKE ?', '%' + content)))
+        Post.where('title LIKE ? and release=true',
+                   '%' + content).or(Post.where('body LIKE ? and release=true',
+                                                '%' + content).or(Post.where('reference_url LIKE ? and release=true', '%' + content)))
       else
         Post.all
       end
@@ -50,6 +52,7 @@ class SearchesController < ApplicationController
   end
 
   def search_genre_for(value)
-    Post.where(genre_id: value)
+    Post.where(genre_id: value).includes(:user)
   end
+
 end

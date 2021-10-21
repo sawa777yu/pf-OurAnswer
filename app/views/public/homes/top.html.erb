@@ -1,12 +1,19 @@
+<% flash.each do |key, value| %>
+    <p class="alert alert-<%= key %>">
+      <%= value %>
+    </p>
+  <% end %>
+<!--各フラッシュメッセージの表示用-->
+  
 <div class='container-field my-4'>
   <div class='row mx-4'>
     <div class='col-md-1'>
-    <table border="1" width="120" height="150">
+    <table border="1" width="120" height="150" class='table-info'>
       <tr align="center">
         <th>ジャンル検索</th>
       </tr>
       <tr>
-        <td>
+        <td class='font-weight-bold'>
           <% @genres.each do |genre| %>
             <%= link_to genre.name, search_genre_path('search[value]': genre.id) %><br />
           <% end %>
@@ -27,7 +34,7 @@
         </div>
       </div>
       </div>
-      
+
       <%= render "bookmark_rank", post_ranks:@post_ranks %>
       <%= render "new_post", posts:@posts %>
 
