@@ -11,14 +11,17 @@ Rails.application.routes.draw do
   }
 
   root to: 'public/homes#top'
+  get 'about', to: 'public/homes#about'
   get 'search', to: 'searches#search'
   get 'search_genre', to: 'searches#search_genre'
+
 
   scope module: :public do
     resources :users, only: [:edit, :update, :show] do
       collection do
         get 'confirm'
         patch 'withdraw'
+        post 'guest_sign_in', to: 'users#new_guest'
       end
       get :bookmarks
       resource :relationships, only: [:create, :destroy]

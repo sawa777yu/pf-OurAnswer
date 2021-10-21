@@ -1,7 +1,11 @@
 class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.page(params[:page]).per(10)
+    if @user == current_user
+      @posts = @user.posts.includes(:genre).page(params[:page]).per(10)
+    else
+      @posts = @user.posts.where(release: 'true').includes(:genre).page(params[:page]).per(10)
+    end
   end
 
   def edit
@@ -24,13 +28,24 @@ class Public::UsersController < ApplicationController
     @user.update(is_deleted: true)
     reset_session
     flash[:notice] = 'ありがとうございました。またのご利用を心よりお待ちしております。'
-    # フラッシュメッセージの表示がされていない。
     redirect_to root_path
   end
 
   def bookmarks
     @user = User.find(params[:user_id])
     @posts = @user.bookmark_posts.includes(:user).order(created_at: :desc).page(params[:page]).per(10)
+  end
+
+  def new_guest
+    user = User.find_or_create_by!(email: 'guest@example.com') do |user|
+    # find_or_create_by　ユーザーが見つからなければemailを生成してくれるメソッド
+      user.password = SecureRandom.alphanumeric(7)
+      # ランダムパスワードを自動生成
+      user.name = "ゲスト"
+      user.our_answers_id = "guest"
+    end
+    sign_in user
+    redirect_to root_path
   end
 
   private

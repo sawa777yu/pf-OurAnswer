@@ -1,5 +1,5 @@
 <div class='container_field'>
-  <div class='row my-1 mx-2'>
+  <div class='row my-1 ml-5'>
     <div class= "col-md-2">
       <%= render 'info', user: @user %>
     </div>
@@ -14,16 +14,14 @@
           <table class='table table-hover table-inverse'>
             <thead class='table-secondary'>
               <tr>
-                <!--scopeのサイズ調整ができていない-->
-                <th scope="col-md-1">投稿日時</th>
-                <th scope="col-md-1">ジャンル</th>
-                <th scope="col-md-6">タイトル</th>
-                <th scope="col-md-1"></th>
-                <th scope="col-md-2">ブックマーク数</th>
+                <th>投稿日時</th>
+                <th>ジャンル</th>
+                <th>タイトル</th>
+                <th><!--公開ステータス用に記述--></th>
+                <th>ブックマーク数</th>
               </tr>
             </thead>
             <tbody>
-              <!--非公開記事について自分のは見れるように、他人のはみれないように-->
               <% @posts.each do |post| %>
                 <tr id="post_<%= post.id %>">
                   <td><%= l post.created_at %></td>

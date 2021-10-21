@@ -7,7 +7,7 @@
   <tr>
     <th>
   	  <%= link_to user_path(user) do %>
-        <%= attachment_image_tag user, :profile_image, fallback: "no_image.jpg", size:'160x150' %>
+        <%= attachment_image_tag user, :profile_image, fallback: "no_image.jpg", size:'160x150', class: 'rounded-circle' %>
       <% end %>
     </th>
   </tr>
@@ -33,9 +33,14 @@
 
   <tr>
 	  <th style="white-space: pre-line;">プロフィール
+	  <!--style="white-space: pre-line;"　←長文が縦長にならないように記述。ターミナル上での改行がviewに反映されるので注意-->
+	  <% if user.introduction.present? %>
 	    <%= user.introduction %></th>
-	  <!--長文が縦長に表示されるのをなんとかしたい-->
+	  <% else %>
+	    プロフィール情報は未登録です
+	  <% end %>
   </tr>
+  
 </table>
 
 <div class='row'>
