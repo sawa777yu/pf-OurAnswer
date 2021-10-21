@@ -4,7 +4,7 @@
       <%= render 'public/users/info', user: @user %>
     </div>
     <div class="col">
-      <div class="row my-4 offset-md-2">
+      <div class="row my-4 offset-md-1">
         <div class="col-md-2 text-center">
           <h4 class="bg-light" >記事詳細</h5>
         </div>
@@ -12,42 +12,41 @@
           <%= render 'public/bookmarks/bookmark_form', post: @post %>
         </div>
       </div>
-      <div class="row offset-md-2 mb-2">
-        <div class="col-md-2">
+
+      <div class="row mb-2">
+        <div class="col-md-4 text-right">
           参考記事URL
         </div>
-        <div class="col">
+        <div class="col text-truncate" style="max-width: 500px;">
           <%= Rinku.auto_link(@post.reference_url, :all, 'target="_blank"').html_safe %>
         </div>
       </div>
-      <div class="row offset-md-2 my-4">
-        <div class="col-md-2">
+      <div class="row my-4">
+        <div class="col-md-4 text-right">
           ジャンル
         </div>
         <div class="col">
           <%= @post.genre.name %>
         </div>
       </div>
-      <div class="row offset-md-2 my-4">
-        <div class="col-md-2">
+      <div class="row my-4">
+        <div class="col-md-4 text-right">
           投稿タイトル
         </div>
         <div class="col">
           <%= @post.title %>
         </div>
       </div>
-      <div class="row offset-md-2 mt-4 mb-2">
-        <div class="col-md-2">
+      <div class="row my-4">
+        <div class="col-md-4 text-right">
           投稿内容詳細
         </div>
-      </div>
-      <div class="row offset-md-2 mt-2 mb-4">
-        <div class="col">
+        <div class="col-md-7">
           <%= @post.body %>
         </div>
       </div>
-      <div class="row offset-md-2 mb-2">
-        <div class="col-md-3">
+      <div class="row mb-2">
+        <div class="col-md-4 text-right">
           参考記事への投稿者からの評価
         </div>
         <div class="col mb-4">
@@ -59,12 +58,12 @@
         <%= link_to "投稿記事編集", edit_post_path, class: 'btn btn-primary btn-sm' %>
       </div>
       <% end %>
-      <div class="row offset-md-2 mt-4 mb-2">
+      <div class="row offset-md-1 mt-4 mb-2">
         <div class="col-md-5">
           参考記事または本記事へのコメント・評価
         </div>
       </div>
-      <div class="row offset-md-2 mt-2 mb-4">
+      <div class="row offset-md-1 mt-2 mb-4">
         <% if user_signed_in? %>
           <div class="col">
             <%= render 'public/post_comments/comment', post: @post, post_comment: @post_comment %>
