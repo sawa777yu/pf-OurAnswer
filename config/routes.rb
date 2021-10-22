@@ -14,7 +14,13 @@ Rails.application.routes.draw do
   get 'about', to: 'public/homes#about'
   get 'search', to: 'searches#search'
   get 'search_genre', to: 'searches#search_genre'
-
+  resources :contacts, only: [:new, :create] do
+    collection do
+      post 'confirm'
+      post 'back'
+      get 'done'
+    end
+  end
 
   scope module: :public do
     resources :users, only: [:edit, :update, :show] do
