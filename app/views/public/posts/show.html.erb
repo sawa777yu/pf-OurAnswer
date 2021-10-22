@@ -15,6 +15,16 @@
 
       <div class="row mb-2">
         <div class="col-md-4 text-right">
+          投稿者
+        </div>
+        <div class="col">
+          <%= link_to user_path(@post.user) do %>
+            <%= @post.user.name %>@<%= @post.user.our_answers_id %>
+          <% end %>
+        </div>
+      </div>
+      <div class="row my-4">
+        <div class="col-md-4 text-right">
           参考記事URL
         </div>
         <div class="col text-truncate" style="max-width: 500px;">

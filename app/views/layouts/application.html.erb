@@ -78,7 +78,9 @@
             <li class="nav-item">© 2021 Yuya Sawata</li>
           </ul>
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">　　　　　お問い合わせはこちら＞</li>
+            <%= link_to new_contact_path,class: 'nav-link active' do %>
+              <li class="nav-item">　　　　　お問い合わせはこちら＞</li>
+            <% end %>
           </ul>
         </div>
       </footer>
