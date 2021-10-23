@@ -2,5 +2,5 @@
   <%= f.text_field :content %>
   <%= f.select :model, options_for_select([["ユーザーを検索","user"], ["投稿記事を検索","post"]]) %>
   <%= f.select :method, options_for_select([["完全一致","perfect"], ["部分一致","partial"], ["前方一致","forward"], ["後方一致","backward"]]) %>
-  <%= f.submit "検索" %>
+  <%= f.submit "検索",class: "btn-secondary" %>
 <% end %>

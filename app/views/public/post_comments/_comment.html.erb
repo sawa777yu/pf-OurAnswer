@@ -1,4 +1,4 @@
-<% post.post_comments.each do |post_comment| %>
+<% post_comments.each do |post_comment| %>
 <div class="card mb-2" style="max-width: 800px">
 
   <div class="card-body">
@@ -19,7 +19,9 @@
         </div>
         <div class="col">
           <% if post_comment.user == current_user %>
-            <%= link_to "コメント削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "btn btn-sm btn-danger destroy_post_comment_#{@post.id}",remote: true %>
+            <%= link_to post_post_comment_path(post_comment.post, post_comment), method: :delete,remote: true do %>
+              <i class="fas fa-trash-alt faa-vertical animated-hover fa-2x" style="color: red;"></i>
+            <% end %>
           <% end %>
         </div>
       </div>
@@ -46,7 +48,7 @@
   <% end %>
   </div>
 
-  <%= form_with(model:[@post, @post_comment]) do |f| %>
+  <%= form_with(model:[@post, @post_comment],remote: true) do |f| %>
     <%= f.text_area :comment, rows:'5', cols:'80',placeholder: "参考記事または本投稿へのコメント" %><br />
     <div id="evaluate_stars"></div><br />
     <div class="action">

@@ -14,6 +14,8 @@
  *= require_self
  */
 @import "bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Festive&display=swap');
+
 
 .background {
   background-image: image-url('house_work.jpg');
@@ -50,5 +52,20 @@ main {
   flex: 1;
 }
 
+#app-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 30px;
+}
 
+.search-result {
+  width: 80%;
+  margin: 20px auto;
+}
 
+h4 {
+  margin: 40px 0 40px 80px;
+}
+
+.result {
+  font-size: 30px;
+}

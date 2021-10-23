@@ -8,13 +8,13 @@
         <div class="col-md-2 text-center">
           <h4 class="bg-light" >記事詳細</h5>
         </div>
-        <div class="col offset-md-2">
+        <div id="bookmark_form_<%= @post.id %>" class="col offset-md-2">
           <%= render 'public/bookmarks/bookmark_form', post: @post %>
         </div>
       </div>
 
       <div class="row mb-2">
-        <div class="col-md-4 text-right">
+        <div class="col-md-2 offset-md-2">
           投稿者
         </div>
         <div class="col">
@@ -24,7 +24,7 @@
         </div>
       </div>
       <div class="row my-4">
-        <div class="col-md-4 text-right">
+        <div class="col-md-2 offset-md-2">
           参考記事URL
         </div>
         <div class="col text-truncate" style="max-width: 500px;">
@@ -32,7 +32,7 @@
         </div>
       </div>
       <div class="row my-4">
-        <div class="col-md-4 text-right">
+        <div class="col-md-2 offset-md-2">
           ジャンル
         </div>
         <div class="col">
@@ -40,7 +40,7 @@
         </div>
       </div>
       <div class="row my-4">
-        <div class="col-md-4 text-right">
+        <div class="col-md-2 offset-md-2">
           投稿タイトル
         </div>
         <div class="col">
@@ -48,7 +48,7 @@
         </div>
       </div>
       <div class="row my-4">
-        <div class="col-md-4 text-right">
+        <div class="col-md-2 offset-md-2">
           投稿内容詳細
         </div>
         <div class="col-md-7">
@@ -56,8 +56,8 @@
         </div>
       </div>
       <div class="row mb-2">
-        <div class="col-md-4 text-right">
-          参考記事への投稿者からの評価
+        <div class="col-md-2 offset-md-2">
+          投稿者からの評価
         </div>
         <div class="col mb-4">
           <div class="post-rate" data-score="<%= @post.rate %>"></div>
@@ -75,8 +75,8 @@
       </div>
       <div class="row offset-md-1 mt-2 mb-4">
         <% if user_signed_in? %>
-          <div class="col">
-            <%= render 'public/post_comments/comment', post: @post, post_comment: @post_comment %>
+          <div id="comment-index" class="col">
+            <%= render 'public/post_comments/comment', {post: @post, post_comment: @post_comment, post_comments: @post_comments} %>
           </div>
         <% else %>
           <div class="col m-3">
