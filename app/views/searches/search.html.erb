@@ -1,7 +1,7 @@
 <% if @model == 'user' %>
- <h4>ユーザー名orユーザーID "<%= @content %>" での検索結果</h4>
- <%= render 'public/users/index', users: @records %>
+　<h4>ユーザー名orユーザーID <span class="result">"<%= @content %>"</span> での検索結果</h4>
+　<%= render 'public/users/index', users: @records %>
 <% elsif @model == 'post' %>
- <h4>投稿記事タイトルor記事詳細or参考url　"<%= @content %>"　での検索結果</h4>
- <%= render 'public/posts/index', posts: @records %>
+　<h4>投稿記事タイトルor記事詳細or参考url <span class="result">"<%= @content %>"</span> での検索結果</h4>
+　<%= render 'public/posts/index', posts: @records %>
 <% end %>
