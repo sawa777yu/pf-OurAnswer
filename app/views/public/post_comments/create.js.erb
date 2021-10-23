@@ -1,1 +1,1 @@
-$(".comment-index").html("<%= escape_javascript(render partial: 'post_comments/comment',locals: {post: @post,post_comment: @post_comment}) %>");
+$("#comment-index").html("<%= j(render 'public/post_comments/comment',{post: @post,post_comment: @post_comment,post_comments: @post_comments}) %>");

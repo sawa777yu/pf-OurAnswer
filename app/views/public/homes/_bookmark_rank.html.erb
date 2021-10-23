@@ -5,19 +5,26 @@
     </h5>
   </div>
 </div>
+
 <% post_ranks.each do |post| %>
-  <div class='row'>
-    <div class='col-md-2'>
-      <%= l post.created_at %>
-    </div>
-    <div class='col-md-1'>
-      <%= post.genre.name %>
-    </div>
-    <div class='col-md-4 text-truncate'>
-      <%= link_to post.title, post_path(post.id) %>
-    </div>
-    <div class='col-md-2'>
-      ブックマーク数：<%= post.bookmarks.count %>
-    </div>
-  </div>
+  <table class="table">
+    <tbody>
+      <tr>
+
+        <td>
+          <%= l post.created_at %>
+        </td>
+        <td>
+          <%= post.genre.name %>
+        </td>
+        <td class="text-truncate" style="max-width: 100px;">
+          <%= link_to post.title, post_path(post.id) %>
+        </td>
+        <td>
+          ブックマーク数：<%= post.bookmarks.count %>
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
 <% end %>

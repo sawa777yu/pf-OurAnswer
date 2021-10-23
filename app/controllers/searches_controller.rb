@@ -30,20 +30,20 @@ class SearchesController < ApplicationController
       end
     elsif model == 'post'
       if method == 'perfect'
-        Post.where(title: content, release: true).or(Post.where(body: content, release: true).or(Post.where(reference_url: content, release: true)))
+        Post.where(title: content, release: true).includes(:genre, :user).or(Post.where(body: content, release: true).includes(:genre, :user).or(Post.where(reference_url: content, release: true).includes(:genre, :user)))
       elsif method == 'partial'
         Post.where(release: true).where('title LIKE ?',
-                   '%' + content + '%').or(Post.where('body LIKE ?',
-                                                      '%' + content + '%').or(Post.where('reference_url LIKE ?',
-                                                                                         '%' + content + '%')))
+                   '%' + content + '%').includes(:genre, :user).or(Post.where('body LIKE ?',
+                                                      '%' + content + '%').includes(:genre, :user).or(Post.where('reference_url LIKE ?',
+                                                                                         '%' + content + '%').includes(:genre, :user)))
       elsif method == 'forward'
         Post.where(release: true).where('title LIKE ?',
-                   content + '%').or(Post.where('body LIKE ?',
-                                                content + '%').or(Post.where('reference_url LIKE ?', content + '%')))
+                   content + '%').includes(:genre, :user).or(Post.where('body LIKE ?',
+                                                content + '%').includes(:genre, :user).or(Post.where('reference_url LIKE ?', content + '%').includes(:genre, :user)))
       elsif method == 'backward'
         Post.where(release: true).where('title LIKE ?',
-                   '%' + content).or(Post.where('body LIKE ?',
-                                                '%' + content).or(Post.where('reference_url LIKE ?', '%' + content)))
+                   '%' + content).includes(:genre, :user).or(Post.where('body LIKE ?',
+                                                '%' + content).includes(:genre, :user).or(Post.where('reference_url LIKE ?', '%' + content).includes(:genre, :user)))
       else
         Post.all
       end
