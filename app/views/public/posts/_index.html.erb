@@ -1,7 +1,7 @@
 <table class="table table-hover search-result">
   <thead>
     <tr>
-      <th>投稿者</th>
+      <th></th>
       <th>投稿日時</th>
       <th>ジャンル</th>
       <th>タイトル</th>
@@ -12,9 +12,11 @@
   <tbody>
     <% posts.each do |post| %>
       <tr>
-        <td><%= link_to user_path(post.user) do %>
-          <%= attachment_image_tag(post.user, :profile_image, fallback: "no_image.jpg", size: "50x50", class: 'rounded-circle') %>
-          <% end %>
+        <td class="text-center">
+          <%= link_to user_path(post.user) do %>
+            <%= attachment_image_tag(post.user, :profile_image, fallback: "no_image.jpg", size: "50x50", class: "rounded-circle") %>
+          <% end %><br />
+          <%= post.user.name %>@<%= post.user.our_answers_id %>
         </td>
         <td><%= l post.created_at %></td>
         <td><%= post.genre.name %></td>

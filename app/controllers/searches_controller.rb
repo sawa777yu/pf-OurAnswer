@@ -1,5 +1,4 @@
 class SearchesController < ApplicationController
-
   def search
     @model = params[:model]
     @content = params[:content]
@@ -25,27 +24,31 @@ class SearchesController < ApplicationController
         User.where('name LIKE ?', content + '%').or(User.where('our_answers_id LIKE ?', content + '%'))
       elsif method == 'backward'
         User.where('name LIKE ?', '%' + content).or(User.where('our_answers_id LIKE ?', '%' + content))
-      else
-        User.all
       end
     elsif model == 'post'
       if method == 'perfect'
-        Post.where(title: content, release: true).includes(:genre, :user).or(Post.where(body: content, release: true).includes(:genre, :user).or(Post.where(reference_url: content, release: true).includes(:genre, :user)))
+        Post.where(title: content, release: true).includes(:genre,
+                                                           :user).or(Post.where(body: content, release: true).includes(:genre,
+                                                                                                                       :user).or(Post.where(reference_url: content, release: true).includes(
+                                                                                                                                   :genre, :user
+                                                                                                                                 )))
       elsif method == 'partial'
         Post.where(release: true).where('title LIKE ?',
-                   '%' + content + '%').includes(:genre, :user).or(Post.where('body LIKE ?',
-                                                      '%' + content + '%').includes(:genre, :user).or(Post.where('reference_url LIKE ?',
-                                                                                         '%' + content + '%').includes(:genre, :user)))
+                                        '%' + content + '%').includes(:genre, :user).or(Post.where('body LIKE ?',
+                                                                                                   '%' + content + '%').includes(:genre, :user).or(Post.where('reference_url LIKE ?',
+                                                                                                                                                              '%' + content + '%').includes(:genre, :user)))
       elsif method == 'forward'
         Post.where(release: true).where('title LIKE ?',
-                   content + '%').includes(:genre, :user).or(Post.where('body LIKE ?',
-                                                content + '%').includes(:genre, :user).or(Post.where('reference_url LIKE ?', content + '%').includes(:genre, :user)))
+                                        content + '%').includes(:genre, :user).or(Post.where('body LIKE ?',
+                                                                                             content + '%').includes(:genre, :user).or(Post.where('reference_url LIKE ?', content + '%').includes(
+                                                                                                                                         :genre, :user
+                                                                                                                                       )))
       elsif method == 'backward'
         Post.where(release: true).where('title LIKE ?',
-                   '%' + content).includes(:genre, :user).or(Post.where('body LIKE ?',
-                                                '%' + content).includes(:genre, :user).or(Post.where('reference_url LIKE ?', '%' + content).includes(:genre, :user)))
-      else
-        Post.all
+                                        '%' + content).includes(:genre, :user).or(Post.where('body LIKE ?',
+                                                                                             '%' + content).includes(:genre, :user).or(Post.where('reference_url LIKE ?', '%' + content).includes(
+                                                                                                                                         :genre, :user
+                                                                                                                                       )))
       end
     end
   end
@@ -53,5 +56,4 @@ class SearchesController < ApplicationController
   def search_genre_for(value)
     Post.where(genre_id: value, release: true).includes(:user)
   end
-
 end

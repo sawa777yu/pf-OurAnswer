@@ -1,8 +1,8 @@
- <h4>ジャンル <span class="result">"<%= @genre.name %>"</span> での検索結果</h4>
+ <h4 class="search-word">ジャンル <span class="result">"<%= @genre.name %>"</span> での検索結果</h4>
  <table class="table table-hover search-result">
   <thead>
     <tr>
-      <th>投稿者</th>
+      <th></th>
       <th>投稿日時</th>
       <th>タイトル</th>
       <th>参考記事url</th>
@@ -12,9 +12,11 @@
   <tbody>
     <% @genre_records.each do |record| %>
       <tr>
-        <td><%= link_to user_path(record.user) do %>
-          <%= attachment_image_tag(record.user, :profile_image, fallback: "no_image.jpg", size: "50x50", class: 'rounded-circle') %>
-          <% end %>
+        <td class="text-center">
+          <%= link_to user_path(record.user) do %>
+            <%= attachment_image_tag(record.user, :profile_image, fallback: "no_image.jpg", size: "50x50", class: 'rounded-circle') %>
+          <% end %><br />
+          <%= record.user.name %>@<%= record.user.our_answers_id %>
         </td>
         <td><%= l record.created_at %></td>
         <td class="text-truncate" style="max-width: 300px;">
