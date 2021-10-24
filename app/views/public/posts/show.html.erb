@@ -3,7 +3,7 @@
     <div class="col-md-2">
       <%= render 'public/users/info', user: @user %>
     </div>
-    <div class="col">
+    <div class="col-md-9" style="background-color: #EEF9FF;">
       <div class="row my-4 offset-md-1">
         <div class="col-md-2 text-center">
           <h4 class="bg-light" >記事詳細</h5>
@@ -13,6 +13,7 @@
         </div>
       </div>
 
+      <div style="background-color: #EEF9FF;">
       <div class="row mb-2">
         <div class="col-md-2 offset-md-2">
           投稿者
@@ -63,9 +64,11 @@
           <div class="post-rate" data-score="<%= @post.rate %>"></div>
         </div>
       </div>
+      </div>
+
       <% if @user == current_user %>
-      <div class="text-center">
-        <%= link_to "投稿記事編集", edit_post_path, class: 'btn btn-primary btn-sm' %>
+      <div class="offset-md-4">
+        <%= link_to "投稿記事編集", edit_post_path, class: "btn btn-primary" %>
       </div>
       <% end %>
       <div class="row offset-md-1 mt-4 mb-2">
@@ -76,6 +79,7 @@
       <div class="row offset-md-1 mt-2 mb-4">
         <% if user_signed_in? %>
           <div id="comment-index" class="col">
+            <!--非同期通信用にid="comment-index"を指定-->
             <%= render 'public/post_comments/comment', {post: @post, post_comment: @post_comment, post_comments: @post_comments} %>
           </div>
         <% else %>
