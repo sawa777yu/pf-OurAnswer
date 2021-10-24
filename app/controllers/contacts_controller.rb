@@ -1,16 +1,13 @@
 class ContactsController < ApplicationController
-
   def new
     @contact = Contact.new
   end
 
   def confirm
     @contact = Contact.new(contact_params)
-    if @contact.invalid?
-      render :new
-    end
+    render :new if @contact.invalid?
   end
-  
+
   def back
     @contact = Contact.new(contact_params)
     render :new
@@ -26,8 +23,7 @@ class ContactsController < ApplicationController
     end
   end
 
-  def done
-  end
+  def done; end
 
   private
 

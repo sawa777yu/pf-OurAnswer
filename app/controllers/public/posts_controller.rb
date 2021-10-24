@@ -25,6 +25,11 @@ class Public::PostsController < ApplicationController
   def edit
     @post = Post.find(params[:id])
     @genres = Genre.all
+    if @post.user == current_user
+      render 'edit'
+    else
+      redirect_to post_path(@post)
+    end
   end
 
   def update

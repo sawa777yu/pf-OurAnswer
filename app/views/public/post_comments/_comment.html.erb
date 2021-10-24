@@ -1,3 +1,5 @@
+<% if post_comments.exists? %>
+
 <% post_comments.each do |post_comment| %>
 <div class="card mb-2" style="max-width: 800px">
 
@@ -11,18 +13,13 @@
     <div class="card-item">
       <div class="row">
         <div class="col">
-        <%= link_to user_path(post_comment.user_id),remote: true do %>
-          <%= attachment_image_tag post_comment.user, :profile_image, fallback: "no_image.jpg", size: "50x50", class: 'rounded-circle' %>
-        <% end %>
-        <%= post_comment.user.name %>様のコメント・評価
-        <div class="post_comment-rate" data-score="<%= post_comment.rate %>"></div>
+          <%= link_to user_path(post_comment.user_id) do %>
+            <%= attachment_image_tag post_comment.user, :profile_image, fallback: "no_image.jpg", size: "50x50", class: 'rounded-circle' %>
+          <% end %>
+          <%= post_comment.user.name %>様のコメント・評価
+          <div class="post_comment-rate" data-score="<%= post_comment.rate %>"></div>
         </div>
         <div class="col">
-          <% if post_comment.user == current_user %>
-            <%= link_to post_post_comment_path(post_comment.post, post_comment), method: :delete,remote: true do %>
-              <i class="fas fa-trash-alt faa-vertical animated-hover fa-2x" style="color: red;"></i>
-            <% end %>
-          <% end %>
         </div>
       </div>
     </div>
@@ -31,11 +28,23 @@
   <div class="card-body">
     <div class="card-item">
       <%= post_comment.comment %>
+      <div class="text-right">
+        <% if post_comment.user == current_user %>
+          <%= link_to post_post_comment_path(post_comment.post, post_comment), method: :delete,remote: true do %>
+            <i class="fas fa-trash-alt faa-vertical animated-hover fa-2x" style="color: red;"></i>
+          <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 
 </div>
 <% end %>
+
+<% else %>
+  <h5 class="offset-md-1 my-4">コメント・評価はまだありません。</h5>
+<% end %>
+
 
   <div id="error_explanation">
   <% if @post_comment.errors.any? %>
@@ -49,10 +58,10 @@
   </div>
 
   <%= form_with(model:[@post, @post_comment],remote: true) do |f| %>
-    <%= f.text_area :comment, rows:'5', cols:'80',placeholder: "参考記事または本投稿へのコメント" %><br />
+    <%= f.text_area :comment, rows:'5', cols:'80',placeholder: "参考記事または本投稿へのコメントはこちら。下部の星マークから評価もつけることができます。" %><br />
     <div id="evaluate_stars"></div><br />
     <div class="action">
-      <%= f.submit "送信", class: 'btn btn-success' %>
+      <%= f.submit "送信", class: "btn btn-success" %>
     </div>
   <% end %>
 

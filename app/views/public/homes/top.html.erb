@@ -4,30 +4,30 @@
     </p>
   <% end %>
 <!--各フラッシュメッセージの表示用-->
-  
-<div class='container-field my-4'>
-  <div class='row mx-4'>
-    <div class='col-md-1'>
-    <table border="1" width="120" height="150" class='table-info'>
+
+<div class="container-field my-4">
+  <div class="row mx-4">
+    <div class="col-md-1">
+    <table border="1" width="120" height="150" class="table-warning">
       <tr align="center">
         <th>ジャンル検索</th>
       </tr>
       <tr>
-        <td class='font-weight-bold'>
+        <td class="font-weight-bold">
           <% @genres.each do |genre| %>
-            <%= link_to genre.name, search_genre_path('search[value]': genre.id) %><br />
+            <%= link_to genre.name, search_genre_path("search[value]": genre.id) %><br />
           <% end %>
         </td>
       </tr>
     </table>
     </div>
-    <div class='col-md-9 offset-md-1'>
-      <div class='row'>
+    <div class="col-md-9 offset-md-1">
+      <div class="row">
       <div class="main-visual">
         <div class="main-visual-content">
           <p class="h1">ようこそ！</p>
           <p class="main-visual-text">
-            このサイトは、家事をされている皆様の味方です。<br>
+            このサイトは、家事専門のレビューサイトです。<br>
             気になるサイトがあれば口コミがないか、<br>
             検索をしてみましょう。
           </p>
