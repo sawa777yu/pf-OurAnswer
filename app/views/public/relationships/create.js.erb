@@ -1,1 +1,8 @@
-$("#button_<%= @user.id %>").html("<%= j(render 'public/relationships/button', user: @user) %>");
+<!--ユーザー詳細画面用のフォローボタン-->
+$("#form_<%= @user.id %>").html("<%= j(render 'public/relationships/form', user: @user) %>");
+
+
+<!--ユーザー検索およびフォロー・フォロワー用のフォローボタン関連。table内にデータがある関係で部分テンプレートを複数用意。-->
+$("#button_<%= @user.id %> td:nth-child(3)").html("<%= j(render 'public/relationships/follower_count', user: @user) %>");
+$("#button_<%= @user.id %> td:nth-child(4)").html("<%= j(render 'public/relationships/followed_count', user: @user) %>");
+$("#button_<%= @user.id %> td:nth-child(5)").html("<%= j(render 'public/relationships/button', user: @user) %>");

@@ -5,23 +5,11 @@
     <tr>
       <th>プロフィール画像</th>
       <th>ニックネーム＠ID</th>
-      <th></th><th></th><th></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
   <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= attachment_image_tag(user, :profile_image,fallback: "no_image.jpg", size:'60x50', class: 'rounded-circle') %></td>
-        <td><%= user.name %>@<%= user.our_answers_id %></td>
-        <td>フォロー数: <%= user.followings.count %></td>
-        <td>フォロワー数: <%= user.followers.count %></td>
-        <td>
-          <%= link_to user_path(user), class: "user_#{user.id}" do %>
-            <%= user.name %>様のページ
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
+    <%= render 'public/relationships/user_table', users: @users %>
   </tbody>
 </table>
 <% else %>

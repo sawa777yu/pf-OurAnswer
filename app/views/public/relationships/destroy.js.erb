@@ -1,1 +1,5 @@
-$("#button_<%= @user.id %>").html("<%= j(render 'public/relationships/button', user: @user) %>");
+$("#form_<%= @user.id %>").html("<%= j(render 'public/relationships/form', user: @user) %>");
+
+$("#button_<%= @user.id %> td:nth-child(3)").html("<%= j(render 'public/relationships/follower_count', user: @user) %>");
+$("#button_<%= @user.id %> td:nth-child(4)").html("<%= j(render 'public/relationships/followed_count', user: @user) %>");
+$("#button_<%= @user.id %> td:nth-child(5)").html("<%= j(render 'public/relationships/button', user: @user) %>");
