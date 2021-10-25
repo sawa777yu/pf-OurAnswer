@@ -14,8 +14,8 @@
     	    プロフィール情報は未登録です
     	  <% end %>
       <% if user_signed_in? %>
-        <div id="button_<%= user.id %>" >
-          <%= render 'public/relationships/button', user: user %>
+        <div id="form_<%= user.id %>" >
+          <%= render 'public/relationships/form', user: user %>
         </div>
       <% end %>
 
