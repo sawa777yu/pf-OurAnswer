@@ -1,0 +1,17 @@
+<% users.each do |user| %>
+  <tr id="button_<%= user.id %>">
+    <td><%= attachment_image_tag(user, :profile_image, fallback: "no_image.jpg", size: "50x50", class: "rounded-circle") %></td>
+    <td><%= user.name %>@<%= user.our_answers_id %></td>
+    <td><%= render 'public/relationships/follower_count', user: user %></td>
+    <td><%= render 'public/relationships/followed_count', user: user %></td>
+    <% if user_signed_in? %>
+    <!--未ログイン状態でも検索を行えるようにするために記述。上記が無いとcurrent_userの部分でエラーになる-->
+    <td><%= render 'public/relationships/button', user: user %></td>
+    <% end %>
+    <td>
+      <%= link_to user_path(user), class: "user_#{user.id}" do %>
+        <%= user.name %>様のページ
+      <% end %>
+    </td>
+  </tr>
+<% end %>
