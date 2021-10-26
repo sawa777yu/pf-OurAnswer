@@ -66,6 +66,8 @@
   <% end %>
 
 <script>
+$('#evaluate_stars').empty();
+// ブラウザバックで星が増えるエラー回避のために記述
   $('#evaluate_stars').raty({
     starOn: "<%= asset_path('star-on.png') %>",
     starOff: "<%= asset_path('star-off.png') %>",
@@ -74,6 +76,8 @@
     half: true,
   });
 
+$('.post_comment-rate').empty();
+// ブラウザバックで星が増えるエラー回避のために記述
   $('.post_comment-rate').raty({
     readOnly: true,
     score: function() {

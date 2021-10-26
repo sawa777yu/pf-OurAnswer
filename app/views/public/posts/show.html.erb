@@ -8,9 +8,16 @@
         <div class="col-md-2 text-center">
           <h4 >記事詳細</h5>
         </div>
+
+<% if @user.is_deleted == false %>
+
+  <% if @post.release == true or (@post.release == false and @post.user == current_user) %>
+
+        <% if @user != current_user %>
         <div id="bookmark_form_<%= @post.id %>" class="col offset-md-2">
           <%= render 'public/bookmarks/bookmark_form', post: @post %>
         </div>
+        <% end %>
       </div>
 
       <div style="background-color: #EEF9FF;">
@@ -93,9 +100,18 @@
   </div>
 </div>
 
+  <% else %>
+    <p>本記事の非公開です。投稿主様のみご確認いただけます。</p>
+  <% end %>
+
+<% else %>
+  <p>本記事の投稿主様はご退会されているため記事を確認できません。</p>
+<% end %>
 
 
 <script>
+$('.post-rate').empty();
+// ブラウザバックで星が増えるエラー回避のために記述
   $('.post-rate').raty({
     readOnly: true,
     score: function() {
