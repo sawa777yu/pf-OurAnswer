@@ -10,7 +10,7 @@
   </div>
   <div class="row mt-5">
     <div class="col-md-4 offset-md-3">
-      <%= link_to "退会しない", root_path, class: 'btn btn-primary btn-lg' %>
+      <%= link_to "退会しない", user_path(current_user), class: 'btn btn-primary btn-lg' %>
     </div>
     <div class="col-md-3">
       <%= link_to "退会する", withdraw_users_path(@user), class: 'btn btn-danger btn-lg', method: :patch %>

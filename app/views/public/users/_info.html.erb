@@ -4,6 +4,8 @@
       <div class="col text-center">
         <p>ユーザー情報</p>
 
+<% if user.is_deleted == false %>
+
     	  <%= link_to user_path(user) do %>
           <%= attachment_image_tag user, :profile_image, fallback: "no_image.jpg", size:'160x150', class: 'rounded-circle' %>
         <% end %><br /><br />
@@ -18,6 +20,10 @@
           <%= render 'public/relationships/form', user: user %>
         </div>
       <% end %>
+
+<% else %>
+<p>こちらのユーザー様はご退会されております。</p>
+<% end %>
 
       </div>
     </div>

@@ -13,4 +13,8 @@ class Post < ApplicationRecord
   validates :reference_url, presence: true
   validates :title, presence: true
   validates :body, presence: true
+  
+  scope :showable, -> { joins(:user).where(release: true, users: {is_deleted: false }) }
+  # searchコントローラーの表記短縮のため
+  
 end

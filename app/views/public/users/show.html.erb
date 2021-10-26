@@ -9,6 +9,9 @@
           <h5 class="offset-md-1 bg-light text-center"><%= @user.name %>様の投稿記事一覧</h5>
         </div>
       </div>
+      
+<% if @user.is_deleted == false %>
+
       <div class='row mx-2'>
         <div class='col-md-12'>
           <table class='table table-hover table-inverse'>
@@ -47,5 +50,10 @@
         </div>
       </div>
     </div>
+    
+    <% else %>
+    <p>こちらのユーザー様は退会されております。</p>
+    <% end %>
+    
   </div>
 </div>

@@ -25,7 +25,7 @@
       <div class="row">
       <div class="main-visual">
         <div class="main-visual-content">
-          <p class="h1">ようこそ！</p>
+          <p class="h1">ようこそ！<% if user_signed_in? %>"<%= @user.name %>" 様！<% end %></p>
           <p class="main-visual-text">
             このサイトは、家事専門のレビューサイトです。<br>
             気になるサイトがあれば口コミがないか、<br>
