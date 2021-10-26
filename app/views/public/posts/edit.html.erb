@@ -80,6 +80,8 @@
 </div>
 
 <script>
+$('.post-rate').empty();
+// ブラウザバックで星が増えるエラー回避のために記述
   $('.post-rate').raty({
     starOn: "<%= asset_path('star-on.png') %>",
     starOff: "<%= asset_path('star-off.png') %>",

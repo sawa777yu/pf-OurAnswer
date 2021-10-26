@@ -12,8 +12,11 @@ class Admin::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.save(user_params)
-    redirect_to admin_root_path
+    if @user.update(user_params)
+      redirect_to admin_root_path
+    else
+      render 'edit'
+    end
   end
 
   private

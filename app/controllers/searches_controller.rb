@@ -17,38 +17,41 @@ class SearchesController < ApplicationController
   def search_for(model, content, method)
     if model == 'user'
       if method == 'perfect'
-        User.where(name: content).or(User.where(our_answers_id: content))
+        User.where(name: content, is_deleted: false).or(User.where(our_answers_id: content, is_deleted: false))
       elsif method == 'partial'
-        User.where('name LIKE ?', '%' + content + '%').or(User.where('our_answers_id LIKE ?', '%' + content + '%'))
+        User.where(is_deleted: false).where('name LIKE ?',
+                                            '%' + content + '%').or(User.where(is_deleted: false).where(
+                                                                      'our_answers_id LIKE ?', '%' + content + '%'
+                                                                    ))
       elsif method == 'forward'
-        User.where('name LIKE ?', content + '%').or(User.where('our_answers_id LIKE ?', content + '%'))
+        User.where(is_deleted: false).where('name LIKE ?',
+                                            content + '%').or(User.where(is_deleted: false).where(
+                                                                'our_answers_id LIKE ?', content + '%'
+                                                              ))
       elsif method == 'backward'
-        User.where('name LIKE ?', '%' + content).or(User.where('our_answers_id LIKE ?', '%' + content))
+        User.where(is_deleted: false).where('name LIKE ?',
+                                            '%' + content).or(User.where(is_deleted: false).where(
+                                                                'our_answers_id LIKE ?', '%' + content
+                                                              ))
       end
     elsif model == 'post'
+      relations = [:user, :genre]
       if method == 'perfect'
-        Post.where(title: content, release: true).includes(:genre,
-                                                           :user).or(Post.where(body: content, release: true).includes(:genre,
-                                                                                                                       :user).or(Post.where(reference_url: content, release: true).includes(
-                                                                                                                                   :genre, :user
-                                                                                                                                 )))
+        Post.includes(relations).showable.where(title: content)
+          .or(Post.includes(relations).showable.where(body: content))
+          .or(Post.includes(relations).showable.where(reference_url: content))
       elsif method == 'partial'
-        Post.where(release: true).where('title LIKE ?',
-                                        '%' + content + '%').includes(:genre, :user).or(Post.where('body LIKE ?',
-                                                                                                   '%' + content + '%').includes(:genre, :user).or(Post.where('reference_url LIKE ?',
-                                                                                                                                                              '%' + content + '%').includes(:genre, :user)))
+        Post.includes(relations).showable.where('title LIKE ?', '%' + content + '%')
+        .or(Post.includes(relations).showable.where('body LIKE ?', '%' + content + '%'))
+        .or(Post.includes(relations).showable.where('reference_url LIKE ?', '%' + content + '%'))
       elsif method == 'forward'
-        Post.where(release: true).where('title LIKE ?',
-                                        content + '%').includes(:genre, :user).or(Post.where('body LIKE ?',
-                                                                                             content + '%').includes(:genre, :user).or(Post.where('reference_url LIKE ?', content + '%').includes(
-                                                                                                                                         :genre, :user
-                                                                                                                                       )))
+        Post.includes(relations).showable.where('title LIKE ?', content + '%')
+        .or(Post.includes(relations).showable.where('body LIKE ?', content + '%'))
+        .or(Post.includes(relations).showable.where('reference_url LIKE ?', content + '%'))
       elsif method == 'backward'
-        Post.where(release: true).where('title LIKE ?',
-                                        '%' + content).includes(:genre, :user).or(Post.where('body LIKE ?',
-                                                                                             '%' + content).includes(:genre, :user).or(Post.where('reference_url LIKE ?', '%' + content).includes(
-                                                                                                                                         :genre, :user
-                                                                                                                                       )))
+        Post.includes(relations).showable.where('title LIKE ?', '%' + content)
+        .or(Post.includes(relations).showable.where('body LIKE ?', '%' + content))
+        .or(Post.includes(relations).showable.where('reference_url LIKE ?', '%' + content))
       end
     end
   end
