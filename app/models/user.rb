@@ -27,4 +27,8 @@ class User < ApplicationRecord
 
   validates :name, presence: true
   validates :our_answers_id, presence: true
+
+  scope :valid_user, -> { where(is_deleted: false) }
+  # searchコントローラーの表記短縮のため記述
+
 end
