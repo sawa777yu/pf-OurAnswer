@@ -7,6 +7,7 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+    @post.score = Language.get_data(post_params[:body])  #NaturalLnguageAPIの機能のため追記
     if @post.save
       redirect_to post_path(@post)
     else
@@ -34,6 +35,7 @@ class Public::PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
+    @post.score = Language.get_data(post_params[:body])
     if @post.update(post_params)
       redirect_to post_path(@post)
     else
