@@ -1,9 +1,3 @@
-Admin.create!(
-  email: 'wcp2108-pf@admin',
-  password: 'v7paft'
-  # パスワードは最低６文字
-)
-
 User.create!(
   [
     {
