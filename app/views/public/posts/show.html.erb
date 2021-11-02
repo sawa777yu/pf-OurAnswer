@@ -60,7 +60,23 @@
           投稿内容詳細
         </div>
         <div class="col-md-7">
-          <%= @post.body %>
+          <% if @post.score.present? %>
+            <% if @post.score >= 0 %>
+              <h5 class="text-success"><%= @post.body %></h5>
+              <p>
+                AIによる投稿内容の感情分析スコア[<%= @post.score %>]<br />
+                ※スコアによって投稿内容詳細の表示色が変わります。
+              </p>
+            <% else %>
+              <h5 class="text-danger"><%= @post.body %></h5>
+              <p>
+                AIによる投稿内容の感情分析スコア[<%= @post.score %>]<br />
+                ※スコアによって投稿内容詳細の表示色が変わります。
+              </p>
+            <% end %>
+          <% else %>
+            <%= @post.body %>
+          <% end %>
         </div>
       </div>
       <div class="row mb-2">
@@ -114,9 +130,11 @@ $('.post-rate').empty();
 // ブラウザバックで星が増えるエラー回避のために記述
   $('.post-rate').raty({
     readOnly: true,
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
     score: function() {
       return $(this).attr('data-score');
-    },
-    path: '/assets/'
+    }
   });
 </script>
