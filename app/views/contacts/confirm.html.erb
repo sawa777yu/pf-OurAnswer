@@ -37,13 +37,13 @@
   <%= f.hidden_field :name %>
   <%= f.hidden_field :email %>
   <%= f.hidden_field :message %>
-  <div class="my-4 offset-md-3">こちらの内容でよろしければ <%= f.submit "送信" %> を</div>
+  <div class="my-4 offset-md-3">こちらの内容でよろしければ <%= f.submit "送信",class: "btn btn-success" %> を</div>
 <% end %>
 <%= form_with model: @contact, url: back_contacts_path,local: true do |f| %>
   <%= f.hidden_field :name %>
   <%= f.hidden_field :email %>
   <%= f.hidden_field :message %>
-  <div class="my-4 offset-md-3">修正される場合は <%= f.submit "入力画面に戻る" %> を押してください</div>
+  <div class="my-4 offset-md-3">修正される場合は <%= f.submit "入力画面に戻る",class: "btn btn-primary" %> を押してください</div>
 <% end %>
 
 </div>
