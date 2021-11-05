@@ -14,7 +14,7 @@
       <div class="card-body">
         <div class="card-item">
           <div class="row">
-    
+
             <div class="col text-center">
               <p>第 <span style="font-size: 25px;"><%= i %></span> 位</p>
               <%= link_to user_path(post.user_id) do %>
@@ -22,18 +22,18 @@
               <% end %><br />
               <%= post.user.name %>@<%= post.user.our_answers_id %>
             </div>
-    
+
             <div class="col">
               <p class="text-truncate" style="max-width: 150px;"><%= link_to post.title, post_path(post.id) %></p>
               ジャンル：<%= post.genre.name %><br />
               ブックマーク数：<%= post.bookmarks.count %><br />
               <%= l post.created_at %>
             </div>
-    
+
           </div>
         </div>
       </div>
-      
+
       </div>
     </div>
   <% end %>
