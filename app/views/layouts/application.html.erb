@@ -33,6 +33,12 @@
                   <i class="fas fa-plus-circle"></i> 新規記事投稿
                 <% end %>
               </li>
+              <% if unchecked_notifications.any? %>
+                  <i class="fa fa-circle" style="color: gold;"></i>
+              <% end %>
+              <li>
+                  <%= link_to "通知", notifications_path, class: "btn-default" %>
+              </li>
               <li>
                 <%= link_to destroy_user_session_path,class: 'nav-link active', method: :delete do %>
                   <i class="fas fa-sign-out-alt"></i> ログアウト
