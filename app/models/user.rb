@@ -7,6 +7,10 @@ class User < ApplicationRecord
   has_many :followings, through: :follower_of_relationships, source: :followed
   has_many :followed_of_relationships, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy
   has_many :followers, through: :followed_of_relationships, source: :follower
+  # visiter_id:通知を送ったユーザーのid
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visiter_id', dependent: :destroy
+  # visited_id:通知を送られたユーザーのid
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
 
   attachment :profile_image
 
@@ -30,5 +34,17 @@ class User < ApplicationRecord
 
   scope :valid_user, -> { where(is_deleted: false) }
   # searchコントローラーの表記短縮のため記述
+
+  def create_notification_follow(current_user)
+    temp = Notification.where(["visiter_id = ? and visited_id = ? and action = ? ", current_user.id, id, "follow"])
+    # フォローの通知は最初の一回しか来ないようにする。（連続で通知が来るのも煩わしいため）
+    if temp.blank?
+      notification = current_user.active_notifications.new(
+        visited_id: id,
+        action: "follow"
+      )
+      notification.save if notification.valid?
+    end
+  end
 
 end

@@ -14,6 +14,11 @@ Rails.application.routes.draw do
   get 'about', to: 'public/homes#about'
   get 'search', to: 'searches#search'
   get 'search_genre', to: 'searches#search_genre'
+  resources :notifications, only: :index do
+    collection do
+      delete 'destroy_all'
+    end
+  end
   resources :contacts, only: [:new, :create] do
     collection do
       post 'confirm'

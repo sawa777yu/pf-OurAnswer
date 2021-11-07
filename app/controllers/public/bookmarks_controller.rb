@@ -3,6 +3,7 @@ class Public::BookmarksController < ApplicationController
     @post = Post.find(params[:post_id])
     bookmark = current_user.bookmarks.new(post_id: @post.id)
     bookmark.save
+    @post.create_notification_by(current_user)
   end
 
   def destroy
