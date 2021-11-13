@@ -1,9 +1,8 @@
 class NotificationsController < ApplicationController
   def index
-    @notifications = current_user.passive_notifications
-    @notifications.where(checked: false).each do |notification|
-      notification.update_attributes(checked: true)
-    end
+    # include(:vistiter)は、コメントの通知がある場合の通知一覧画面でのbulletのアラート解消のため記述
+    @notifications = current_user.passive_notifications.includes(:visiter)
+    @notifications.where(checked: false).update_all(checked: true)
   end
 
   def destroy_all

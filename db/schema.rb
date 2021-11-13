@@ -54,6 +54,10 @@ ActiveRecord::Schema.define(version: 2021_11_07_061827) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "checked", default: false
+    t.index ["comment_id"], name: "index_notifications_on_comment_id"
+    t.index ["post_id"], name: "index_notifications_on_post_id"
+    t.index ["visited_id"], name: "index_notifications_on_visited_id"
+    t.index ["visiter_id"], name: "index_notifications_on_visiter_id"
   end
 
   create_table "post_comments", force: :cascade do |t|
