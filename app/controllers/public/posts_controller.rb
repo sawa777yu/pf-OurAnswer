@@ -28,7 +28,7 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @genres = Genre.all
     if @post.user == current_user
-      render 'edit'
+      render :edit
     else
       redirect_to post_path(@post)
     end
@@ -41,7 +41,7 @@ class Public::PostsController < ApplicationController
       redirect_to post_path(@post)
     else
       @genres = Genre.all
-      render 'edit'
+      render :edit
     end
   end
 

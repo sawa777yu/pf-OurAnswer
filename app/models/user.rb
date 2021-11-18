@@ -32,8 +32,8 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :our_answers_id, presence: true
 
-  scope :valid_user, -> { where(is_deleted: false) }
   # searchコントローラーの表記短縮のため記述
+  scope :valid_user, -> { where(is_deleted: false) }
 
   def create_notification_follow(current_user)
     temp = Notification.where(["visiter_id = ? and visited_id = ? and action = ? ", current_user.id, id, "follow"])
