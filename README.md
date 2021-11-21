@@ -23,9 +23,9 @@
 より精度の高い情報に素早く辿り着くことができます。
 
 ## 設計書
-- [UI Flows](https://drive.google.com/file/d/1UAa1NpWdSaCRyNAsGHjMRBwvbkZdwoLl/view?usp=sharing)
-- [wire flame（管理者）](https://drive.google.com/file/d/1QQl7GA1Jvk6lqArbxXkDfhD7lSuyoc-y/view?usp=sharing)
-- [wire flame（ユーザー側）](https://drive.google.com/file/d/1A4A1jp4kA164cwgCuMfFIC8EWMfd2Noy/view?usp=sharing)
+- [UI Flows](https://drive.google.com/file/d/1uNYs7w9B54bd3qx-13ivuJhVdMH6OvEs/view?usp=sharing)
+- [wire flame（管理者）](https://drive.google.com/file/d/1odl7c6By8Ks03QLMlD0JghAgOfzghJv7/view?usp=sharing)
+- [wire flame（ユーザー側）](https://drive.google.com/file/d/1R-VzE_At-rttWNrwM9dvWfwvMBz_Er3j/view?usp=sharing)
 - [ＥＲ図](https://drive.google.com/file/d/1G8NaQLRnH57fJ25uuMElI9FpATlHAqIg/view?usp=sharing)
 - [テーブル提議書](https://docs.google.com/spreadsheets/d/1jt5lzb50F3IwEBGyy6y8CImDwFbjkEXy3h6hKWGCNqo/edit?usp=sharing)
 - [アプリケーション詳細設計](https://docs.google.com/spreadsheets/d/1tJMToaZZfIl9ESQPFTJugi7eVimNe0ilwM74pID-Kj8/edit?usp=sharing)
@@ -44,5 +44,5 @@
 
 ## 参考
 - https://fonts.google.com/ ：タイトルのフォントに使用
-- https://www.ac-illust.com/main/search_result.php?word=noimage ：プロフィールのno image画像(112690.jpg) 
+- https://www.ac-illust.com/main/search_result.php?word=noimage ：プロフィールのno image画像(112690.jpg)
 

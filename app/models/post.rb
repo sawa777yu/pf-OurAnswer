@@ -15,9 +15,8 @@ class Post < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true
 
-  # searchコントローラーの表記短縮のため記述
+  # search,homesコントローラーの表記短縮のため記述
   scope :showable, -> { joins(:user).where(release: true, users: {is_deleted: false }) }
-
 
   def create_notification_by(current_user)
     notification = current_user.active_notifications.new(
