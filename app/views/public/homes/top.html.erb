@@ -15,7 +15,7 @@
       <tr>
         <td class="font-weight-bold">
           <% @genres.each do |genre| %>
-            <%= link_to genre.name, search_genre_path("search[value]": genre.id) %><br />
+            <%= link_to genre.name, search_genre_path("search[value]": genre.id) %>(<%= genre.posts.showable.count %>)<br />
           <% end %>
         </td>
       </tr>
@@ -36,7 +36,7 @@
       </div>
 
       <%= render "bookmark_rank", post_ranks:@post_ranks %>
-      <%= render "new_post", posts:@posts %>
+      <%= render "new_post", posts:@new_posts %>
 
     </div>
   </div>
