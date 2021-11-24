@@ -90,3 +90,19 @@ main {
   font-size: 32px;
   text-decoration: none;
 }
+
+.genre-table {
+  width:150px;
+  border-collapse: collapse;
+  border: solid 2px orange;
+  background: #fff5e5;
+}
+
+.genre-table th {
+  text-align: center;
+  border: solid 1px orange;
+}
+
+.genre-table td {
+  font-weight: bold;
+}

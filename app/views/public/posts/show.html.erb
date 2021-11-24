@@ -117,7 +117,7 @@
 </div>
 
   <% else %>
-    <p>本記事の非公開です。投稿主様のみご確認いただけます。</p>
+    <p>本記事の内容は非公開です。投稿主様のみご確認いただけます。</p>
   <% end %>
 
 <% else %>
@@ -126,8 +126,8 @@
 
 
 <script>
-$('.post-rate').empty();
 // ブラウザバックで星が増えるエラー回避のために記述
+$('.post-rate').empty();
   $('.post-rate').raty({
     readOnly: true,
     starOn: "<%= asset_path('star-on.png') %>",

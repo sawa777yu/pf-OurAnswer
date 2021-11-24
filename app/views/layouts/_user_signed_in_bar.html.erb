@@ -1,0 +1,28 @@
+<li>
+  <%= link_to user_path(current_user),class: 'nav-link active' do %>
+    <i class="fas fa-user"></i> マイページ
+  <% end %>
+</li>
+<li>
+  <%= link_to new_post_path,class: 'nav-link active' do %>
+    <i class="fas fa-plus-circle"></i> 新規記事投稿
+  <% end %>
+</li>
+<li>
+  <%= link_to notifications_path, class: 'nav-link active' do %>
+    <i class="fas fa-bell faa-tada animated-hover"></i> 通知
+    <% if unchecked_notifications.any? %>
+      <i class="fas fa-circle" style="color: gold;"></i>
+    <% end %>
+  <% end %>
+</li>
+<li>
+  <%= link_to destroy_user_session_path,class: 'nav-link active', method: :delete do %>
+    <i class="fas fa-sign-out-alt faa-passing animated-hover"></i> ログアウト
+  <% end %>
+</li>
+<li>
+  <%= link_to about_path,class: 'nav-link active' do %>
+    <i class="fas fa-question-circle faa-pulse animated-hover"></i> 当サイトについて
+  <% end %>
+</li>

@@ -3,6 +3,24 @@ ja:
     formats:
       default: "%Y/%m/%d %H:%M"
   activerecord:
+    models:
+      user: ユーザー
+      post: 投稿
+      genre: ジャンル
+    attributes:
+      user:
+        email: メールアドレス
+        name: ニックネーム
+        password: パスワード
+        our_answers_id: ユーザーＩＤ
+      post:
+        reference_url: 参考記事URL
+        title: 投稿タイトル
+        body: 投稿内容詳細
+        genre_id: ジャンル
+        genre: ジャンル
+      genre:
+        name: ジャンル
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

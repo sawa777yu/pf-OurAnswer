@@ -23,55 +23,11 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDropdown">
           <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
-              <li>
-                <%= link_to user_path(current_user),class: 'nav-link active' do %>
-                  <i class="fas fa-user"></i> マイページ
-                <% end %>
-              </li>
-              <li>
-                <%= link_to new_post_path,class: 'nav-link active' do %>
-                  <i class="fas fa-plus-circle"></i> 新規記事投稿
-                <% end %>
-              </li>
-              <li>
-                <%= link_to notifications_path, class: 'nav-link active' do %>
-                  <i class="fas fa-bell faa-tada animated-hover"></i> 通知
-                  <% if unchecked_notifications.any? %>
-                    <i class="fas fa-circle" style="color: gold;"></i>
-                  <% end %>
-                <% end %>
-              </li>
-              <li>
-                <%= link_to destroy_user_session_path,class: 'nav-link active', method: :delete do %>
-                  <i class="fas fa-sign-out-alt faa-passing animated-hover"></i> ログアウト
-                <% end %>
-              </li>
-              <li>
-                <%= link_to about_path,class: 'nav-link active' do %>
-                  <i class="fas fa-question-circle faa-pulse animated-hover"></i> 当サイトについて
-                <% end %>
-              </li>
+              <%= render "layouts/user_signed_in_bar" %>
             <% elsif admin_signed_in? %>
-              <li><%= link_to "ジャンル一覧", admin_genres_path,class: 'nav-link active' %></li>
-              <li><%= link_to "会員一覧", admin_root_path,class: 'nav-link active' %></li>
-              <li><%= link_to "ログアウト", destroy_admin_session_path,class: 'nav-link active', method: :delete %></li>
+              <%= render "layouts/admin_signed_in_bar" %>
             <% else %>
-              <li>
-                <%= link_to new_user_registration_path,class: 'nav-link active' do %>
-                  <i class="fas fa-user-plus"></i> 新規登録
-                <% end %>
-              </li>
-              <li>
-                <%= link_to new_user_session_path,class: 'nav-link active' do %>
-                  <i class="fas fa-sign-in-alt"></i> ログイン
-                <% end %>
-              </li>
-              <li><%= link_to 'ゲストログイン(閲覧用)',guest_sign_in_users_path, class: "guest-login nav-link active", method: :post %></li>
-              <li>
-                <%= link_to about_path,class: 'nav-link active' do %>
-                  <i class="fas fa-question-circle"></i> 当サイトについて
-                <% end %>
-              </li>
+              <%= render "layouts/user_signed_out_bar" %>
             <% end %>
           </ul>
         </div>

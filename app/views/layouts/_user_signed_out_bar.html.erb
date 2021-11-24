@@ -1,0 +1,16 @@
+<li>
+  <%= link_to new_user_registration_path,class: 'nav-link active' do %>
+    <i class="fas fa-user-plus"></i> 新規登録
+  <% end %>
+</li>
+<li>
+  <%= link_to new_user_session_path,class: 'nav-link active' do %>
+    <i class="fas fa-sign-in-alt"></i> ログイン
+  <% end %>
+</li>
+<li><%= link_to 'ゲストログイン(閲覧用)',guest_sign_in_users_path, class: "guest-login nav-link active", method: :post %></li>
+<li>
+  <%= link_to about_path,class: 'nav-link active' do %>
+    <i class="fas fa-question-circle"></i> 当サイトについて
+  <% end %>
+</li>
