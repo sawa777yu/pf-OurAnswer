@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
-  belongs_to :genre
+  # 独自のバリデーションメッセージを表示させるためにデフォルトのバリデーションを無効に。
+  belongs_to :genre, optional: true
   belongs_to :user, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
@@ -10,13 +11,19 @@ class Post < ApplicationRecord
     bookmarks.where(user_id: user.id).exists?
   end
 
-  validates :genre_id, presence: true
   validates :reference_url, presence: true
   validates :title, presence: true
   validates :body, presence: true
+  validate :check_genre
 
   # search,homesコントローラーの表記短縮のため記述
   scope :showable, -> { joins(:user).where(release: true, users: {is_deleted: false }) }
+
+  def check_genre
+    if self.genre_id.blank?
+      errors[:genre] << "を選択してください"
+    end
+  end
 
   def create_notification_by(current_user)
     notification = current_user.active_notifications.new(

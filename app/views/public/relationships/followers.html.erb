@@ -1,5 +1,5 @@
-<h2>こちらの方々からフォローされています</h2>
 <% if @users.exists? %>
+<h2><%= @user.name %> 様はこちらの方々からフォローされています</h2>
 <table class="table search-result">
   <thead>
     <tr>
@@ -13,5 +13,5 @@
   </tbody>
 </table>
 <% else %>
-  <p>まだフォローされていません</p>
+  <h3><%= @user.name %> 様はまだフォローされていません</h3>
 <% end %>
