@@ -19,14 +19,14 @@ class SearchesController < ApplicationController
       if method == 'perfect'
         User.valid_user.where(name: content).or(User.valid_user.where(our_answers_id: content))
       elsif method == 'partial'
-        User.valid_user.where('name LIKE ?', '%' + content + '%')
-        .or(User.valid_user.where('our_answers_id LIKE ?', '%' + content + '%'))
+        User.valid_user.where('name LIKE ?', "%#{User.sanitize_sql_like(content)}%")
+        .or(User.valid_user.where('our_answers_id LIKE ?', "%#{User.sanitize_sql_like(content)}%"))
       elsif method == 'forward'
-        User.valid_user.where('name LIKE ?',content + '%')
-        .or(User.valid_user.where('our_answers_id LIKE ?', content + '%'))
+        User.valid_user.where('name LIKE ?', "#{User.sanitize_sql_like(content)}%")
+        .or(User.valid_user.where('our_answers_id LIKE ?', "#{User.sanitize_sql_like(content)}%"))
       elsif method == 'backward'
-        User.valid_user.where('name LIKE ?', '%' + content)
-        .or(User.valid_user.where('our_answers_id LIKE ?', '%' + content))
+        User.valid_user.where('name LIKE ?', "%#{User.sanitize_sql_like(content)}")
+        .or(User.valid_user.where('our_answers_id LIKE ?', "%#{User.sanitize_sql_like(content)}"))
       end
     elsif model == 'post'
       relations = [:user, :genre]
@@ -35,17 +35,17 @@ class SearchesController < ApplicationController
         .or(Post.includes(relations).showable.where(body: content))
         .or(Post.includes(relations).showable.where(reference_url: content))
       elsif method == 'partial'
-        Post.includes(relations).showable.where('title LIKE ?', '%' + content + '%')
-        .or(Post.includes(relations).showable.where('body LIKE ?', '%' + content + '%'))
-        .or(Post.includes(relations).showable.where('reference_url LIKE ?', '%' + content + '%'))
+        Post.includes(relations).showable.where('title LIKE ?', "%#{Post.sanitize_sql_like(content)}%")
+        .or(Post.includes(relations).showable.where('body LIKE ?', "%#{Post.sanitize_sql_like(content)}%"))
+        .or(Post.includes(relations).showable.where('reference_url LIKE ?', "%#{Post.sanitize_sql_like(content)}%"))
       elsif method == 'forward'
-        Post.includes(relations).showable.where('title LIKE ?', content + '%')
-        .or(Post.includes(relations).showable.where('body LIKE ?', content + '%'))
-        .or(Post.includes(relations).showable.where('reference_url LIKE ?', content + '%'))
+        Post.includes(relations).showable.where('title LIKE ?', "#{Post.sanitize_sql_like(content)}%")
+        .or(Post.includes(relations).showable.where('body LIKE ?', "#{Post.sanitize_sql_like(content)}%"))
+        .or(Post.includes(relations).showable.where('reference_url LIKE ?', "#{Post.sanitize_sql_like(content)}%"))
       elsif method == 'backward'
-        Post.includes(relations).showable.where('title LIKE ?', '%' + content)
-        .or(Post.includes(relations).showable.where('body LIKE ?', '%' + content))
-        .or(Post.includes(relations).showable.where('reference_url LIKE ?', '%' + content))
+        Post.includes(relations).showable.where('title LIKE ?', "%#{Post.sanitize_sql_like(content)}")
+        .or(Post.includes(relations).showable.where('body LIKE ?', "%#{Post.sanitize_sql_like(content)}"))
+        .or(Post.includes(relations).showable.where('reference_url LIKE ?', "%#{Post.sanitize_sql_like(content)}"))
       end
     end
   end
