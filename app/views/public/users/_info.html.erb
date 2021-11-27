@@ -7,7 +7,7 @@
 <% if user.is_deleted == false %>
 
     	  <%= link_to user_path(user) do %>
-          <%= attachment_image_tag user, :profile_image, fallback: "no_image.jpg", size:'160x150', class: 'rounded-circle' %>
+          <%= attachment_image_tag user, :profile_image, fallback: "no_image.jpg", size:'120x120', class: 'rounded-circle' %>
         <% end %><br /><br />
         <%= user.name %>@<%= user.our_answers_id %><br />
     	  <% if user.introduction.present? %>
