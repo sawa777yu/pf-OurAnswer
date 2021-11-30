@@ -6,7 +6,7 @@
       <th>ジャンル</th>
       <th>タイトル</th>
       <th>参考記事url</th>
-      <th>bookmark</th>
+      <th>ブックマーク</th>
     </tr>
   </thead>
   <tbody>
@@ -20,11 +20,19 @@
         </td>
         <td><%= l post.created_at %></td>
         <td><%= post.genre.name %></td>
-        <td class="text-truncate" style="max-width: 300px;"><%= link_to post.title, post_path(post.id), class: "post_#{post.id}" %></td>
-        <td class="text-truncate" style="max-width: 300px;">
-          <%= Rinku.auto_link(post.reference_url, :all, 'target="_blank"').html_safe %>
+        <td><%= link_to post.title.truncate(20), post_path(post.id), class: "post_#{post.id}" %></td>
+        <td>
+          <%= Rinku.auto_link(post.reference_url.truncate(30), :all, 'target="_blank"').html_safe %>
         </td>
-        <td><%= post.bookmarks.count %></td>
+        <td id="bookmark_form_<%= post.id %>">
+          <% if user_signed_in? %>
+            <% if post.user != current_user %>
+              <%= render 'public/bookmarks/bookmark_form', post: post %>
+            <% end %>
+          <% else %>
+            <%= post.bookmarks.count %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

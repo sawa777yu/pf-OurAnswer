@@ -6,6 +6,7 @@ class Public::UsersController < ApplicationController
              else
                @user.posts.where(release: 'true').includes(:genre).page(params[:page]).per(10)
              end
+    @user_bookmarks = @user.bookmark_posts.includes(:user, :genre).order(created_at: :desc)
   end
 
   def edit

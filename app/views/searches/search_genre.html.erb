@@ -6,7 +6,7 @@
       <th>投稿日時</th>
       <th>タイトル</th>
       <th>参考記事url</th>
-      <th>bookmark</th>
+      <th>ブックマーク</th>
     </tr>
   </thead>
   <tbody>
@@ -19,13 +19,22 @@
           <%= record.user.name %>@<%= record.user.our_answers_id %>
         </td>
         <td><%= l record.created_at %></td>
-        <td class="text-truncate" style="max-width: 300px;">
-          <%= link_to record.title, post_path(record.id), class: "post_#{record.id}" %>
+        <td>
+          <%= link_to record.title.truncate(20), post_path(record.id), class: "post_#{record.id}" %>
         </td>
-        <td class="text-truncate" style="max-width: 300px;">
-          <%= Rinku.auto_link(record.reference_url, :all, 'target="_blank"').html_safe %>
+        <td>
+          <%= Rinku.auto_link(record.reference_url.truncate(30), :all, 'target="_blank"').html_safe %>
         </td>
-        <td><%= record.bookmarks.count %></td>
+        <td id="bookmark_form_<%= record.id %>">
+          <% if user_signed_in? %>
+            <% if record.user != current_user %>
+              <%= render 'public/bookmarks/bookmark_form', post: record %>
+            <% end %>
+          <% else %>
+            <%= record.bookmarks.count %>
+          <% end %>
+        </td>
+
       </tr>
     <% end %>
   </tbody>

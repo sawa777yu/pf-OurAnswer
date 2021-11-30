@@ -90,9 +90,12 @@
       </div>
 
       <% if @user == current_user %>
-      <div class="offset-md-4">
-        <%= link_to "記事編集", edit_post_path, class: "btn btn-primary" %>
-      </div>
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-4">
+            <%= link_to "記事編集", edit_post_path, class: "btn btn-primary btn-block" %>
+          </div>
+        </div>
       <% end %>
       <div class="row offset-md-1 mt-4 mb-2">
         <div class="col-md-5">
@@ -101,8 +104,8 @@
       </div>
       <div class="row offset-md-1 mt-2 mb-4">
         <% if user_signed_in? %>
+          <!--非同期通信用にid="comment-index"を指定-->
           <div id="comment-index" class="col">
-            <!--非同期通信用にid="comment-index"を指定-->
             <%= render 'public/post_comments/comment', {post: @post, post_comment: @post_comment, post_comments: @post_comments} %>
           </div>
         <% else %>

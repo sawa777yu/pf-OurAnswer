@@ -1,0 +1,39 @@
+<div class="row my-1">
+  <div class="col-md-5">
+    <h5 class="offset-md-1 bg-light text-center"><%= user.name %>様のブックマーク一覧</h5>
+  </div>
+</div>
+<div class="row mx-2">
+  <div class="col-md-12">
+    <table class="table table-hover table-inverse">
+      <thead class="table-secondary">
+        <tr>
+          <th>記事投稿者</th>
+          <th>投稿日時</th>
+          <th>ジャンル</th>
+          <th>タイトル</th>
+          <th>ブックマーク</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% user_bookmarks.each do |user_bookmark| %>
+          <tr>
+            <td>
+              <%= link_to user_path(user_bookmark.user) do %>
+                <%= attachment_image_tag user_bookmark.user, :profile_image, fallback: "no_image.jpg", size:'60x50', class: 'rounded-circle' %>
+              <% end %>
+            </td>
+            <td><%= l user_bookmark.created_at %></td>
+            <td><%= user_bookmark.genre.name %></td>
+            <td>
+              <%= link_to user_bookmark.title.truncate(25), post_path(user_bookmark.id), class: "user_bookmark_#{user_bookmark.id}" %>
+            </td>
+            <td id="bookmark_form_<%= user_bookmark.id %>">
+              <%= render 'public/bookmarks/bookmark_form', post: user_bookmark %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
