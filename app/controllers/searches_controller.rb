@@ -51,6 +51,6 @@ class SearchesController < ApplicationController
   end
 
   def search_genre_for(value)
-    Post.where(genre_id: value, release: true).includes(:user)
+    Post.includes(:user).showable.where(genre_id: value)
   end
 end
