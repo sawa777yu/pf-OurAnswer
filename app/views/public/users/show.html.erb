@@ -17,10 +17,10 @@
           <table class="table table-hover table-inverse">
             <thead class="table-secondary">
               <tr>
-                <th>投稿日時</th>
-                <th>ジャンル</th>
+                <th>投稿日時 <%= sort_order "created_at" %></th>
+                <th>ジャンル <%= sort_order "genre_id" %></th>
                 <th>タイトル</th>
-                <th>ステータス</th>
+                <th>ステータス <%= sort_order "release" %></th>
                 <th>ブックマーク数</th>
               </tr>
             </thead>

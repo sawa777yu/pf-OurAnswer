@@ -34,7 +34,6 @@ Rails.application.routes.draw do
         patch 'withdraw'
         post 'guest_sign_in', to: 'users#new_guest'
       end
-      get :bookmarks
       resource :relationships, only: [:create, :destroy]
       get 'followings', to: 'relationships#followings', as: 'followings'
       get 'followers', to: 'relationships#followers', as: 'followers'

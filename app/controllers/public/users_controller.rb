@@ -1,12 +1,14 @@
 class Public::UsersController < ApplicationController
+  helper_method :sort_column, :sort_direction
+
   def show
     @user = User.find(params[:id])
     @posts = if @user == current_user
-               @user.posts.includes(:genre).page(params[:page]).per(10)
+               @user.posts.includes(:genre).page(params[:page]).per(10).order("#{sort_column} #{sort_direction}")
              else
-               @user.posts.where(release: 'true').includes(:genre).page(params[:page]).per(10)
+               @user.posts.where(release: 'true').includes(:genre).page(params[:page]).per(10).order("#{sort_column} #{sort_direction}")
              end
-    @user_bookmarks = @user.bookmark_posts.includes(:user, :genre).order(created_at: :desc)
+    @user_bookmarks = @user.bookmark_posts.includes(:user, :genre).order("#{sort_column} #{sort_direction}")
   end
 
   def edit
@@ -32,11 +34,6 @@ class Public::UsersController < ApplicationController
     redirect_to root_path
   end
 
-  def bookmarks
-    @user = User.find(params[:user_id])
-    @posts = @user.bookmark_posts.includes(:user).order(created_at: :desc).page(params[:page]).per(10)
-  end
-
   def new_guest
     user = User.find_or_create_by!(email: 'guest@example.com') do |user|
       # find_or_create_by　ユーザーが見つからなければemailを生成してくれるメソッド
@@ -54,4 +51,13 @@ class Public::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :our_answers_id, :email, :profile_image, :introduction)
   end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
+  end
+
+  def sort_column
+    Post.column_names.include?(params[:column]) ? params[:column] : "id"
+  end
+
 end
