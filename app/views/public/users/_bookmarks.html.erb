@@ -9,8 +9,8 @@
       <thead class="table-secondary">
         <tr>
           <th>記事投稿者</th>
-          <th>投稿日時</th>
-          <th>ジャンル</th>
+          <th>投稿日時 <%= sort_order "created_at" %></th>
+          <th>ジャンル <%= sort_order "genre_id" %></th>
           <th>タイトル</th>
           <th>ブックマーク</th>
         </tr>

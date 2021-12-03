@@ -24,7 +24,7 @@
             </div>
 
             <div class="col">
-              <p><%= link_to post.title.truncate(12), post_path(post.id) %></p>
+              <p><%= link_to post.title.truncate(11), post_path(post.id) %></p>
               ジャンル：<%= post.genre.name %><br />
               ブックマーク数：<%= post.bookmarks.count %><br />
               <%= l post.created_at %>
