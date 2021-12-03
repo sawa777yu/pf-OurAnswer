@@ -5,4 +5,5 @@ module ApplicationHelper
     link_to content_tag(:i,"",class: "fas fa-sort"), { column: column, direction: direction }
   end
 
+
 end
