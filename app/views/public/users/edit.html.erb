@@ -1,9 +1,16 @@
 <% if @user.errors.any? %>
-  <%= @user.errors.count %>件のエラーが発生しました<br/>
-  <% @user.errors.full_messages.each do |message| %>
-    <%= message %>
-  <% end %>
+  <div id="error_explanation">
+    <h2>
+      <%= @user.errors.count %>件のエラーが発生しました<br/>
+    </h2>
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
+
 <div class="container">
   <div class="row offset-md-3 my-4">
     <div class="col-md-5 text-center">

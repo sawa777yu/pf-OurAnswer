@@ -7,6 +7,7 @@ ja:
       user: ユーザー
       post: 投稿
       genre: ジャンル
+      contact: コンタクト
     attributes:
       user:
         email: メールアドレス
@@ -21,6 +22,10 @@ ja:
         genre: ジャンル
       genre:
         name: ジャンル
+      contact:
+        name: お名前
+        email: メールアドレス
+        message: メッセージ
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

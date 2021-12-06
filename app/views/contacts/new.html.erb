@@ -1,8 +1,14 @@
 <% if @contact.errors.any? %>
-  <%= @contact.errors.count %>件の入力漏れがございます<br/>
-  <% @contact.errors.full_messages.each do |message| %>
-    <%= message %>
-  <% end %>
+  <div id="error_explanation">
+    <h2>
+      <%= @contact.errors.count %>件の入力漏れがございます<br/>
+    </h2>
+    <ul>
+      <% @contact.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
 
 <div class="container">
