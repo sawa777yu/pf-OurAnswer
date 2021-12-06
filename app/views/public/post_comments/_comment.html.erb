@@ -45,18 +45,6 @@
   <h5 class="offset-md-1 my-4">コメント・評価はまだありません。</h5>
 <% end %>
 
-
-  <div id="error_explanation">
-  <% if @post_comment.errors.any? %>
-    <h3><%= post_comment.errors.count %>errors prohibited this obj from being saved:</h3>
-    <ul>
-      <% post_commnet.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  <% end %>
-  </div>
-
   <div class="row">
     <div class="col-md-8">
       <%= form_with(model:[@post, @post_comment],remote: true) do |f| %>
