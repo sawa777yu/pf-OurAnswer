@@ -1,8 +1,9 @@
 class Public::UsersController < ApplicationController
   helper_method :sort_column, :sort_direction
+  before_action :find_user, only: [:show, :edit, :update]
+
 
   def show
-    @user = User.find(params[:id])
     @posts = if @user == current_user
                @user.posts.includes(:genre).page(params[:page]).per(10).order("#{sort_column} #{sort_direction}")
              else
@@ -11,12 +12,9 @@ class Public::UsersController < ApplicationController
     @user_bookmarks = @user.bookmark_posts.includes(:user, :genre).order("#{sort_column} #{sort_direction}")
   end
 
-  def edit
-    @user = User.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to user_path(@user)
     else
@@ -58,6 +56,10 @@ class Public::UsersController < ApplicationController
 
   def sort_column
     Post.column_names.include?(params[:column]) ? params[:column] : "id"
+  end
+
+  def find_user
+    @user = User.find(params[:id])
   end
 
 end
