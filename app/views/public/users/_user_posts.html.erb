@@ -1,0 +1,18 @@
+
+        <% @posts.each do |post| %>
+          <tr id="post_<%= post.id %>">
+            <td><%= l post.created_at %></td>
+            <td><%= post.genre.name %></td>
+            <td class="text-truncate" style="max-width: 300px;">
+              <%= link_to post.title, post_path(post.id), class: "post_#{post.id}" %>
+            </td>
+            <td>
+              <% if post.release == true %>
+                <p class="text-success font-weight-bold">公開</p>
+              <% elsif post.release == false %>
+                <p class="text-secondary font-weight-bold">非公開</p>
+              <% end %>
+            </td>
+            <td><%= post.bookmarks.count %></td>
+          </tr>
+        <% end %>

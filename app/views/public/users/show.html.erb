@@ -14,7 +14,7 @@
       </div>
       <div class="row mx-2">
         <div class="col-md-12">
-          <table class="table table-hover table-inverse">
+          <table class="table table-hover table-inverse" id="user_posts">
             <thead class="table-secondary">
               <tr>
                 <th>投稿日時 <%= sort_order "created_at" %></th>
@@ -25,28 +25,10 @@
               </tr>
             </thead>
             <tbody>
-              <% @posts.each do |post| %>
-                <tr id="post_<%= post.id %>">
-                  <td><%= l post.created_at %></td>
-                  <td><%= post.genre.name %></td>
-                  <td class="text-truncate" style="max-width: 300px;">
-                    <%= link_to post.title, post_path(post.id), class: "post_#{post.id}" %>
-                  </td>
-                  <td>
-                    <% if post.release == true %>
-                      <p class="text-success font-weight-bold">公開</p>
-                    <% elsif post.release == false %>
-                      <p class="text-secondary font-weight-bold">非公開</p>
-                    <% end %>
-                  </td>
-                  <td><%= post.bookmarks.count %></td>
-                </tr>
-              <% end %>
+              <%= render 'user_posts' %>
             </tbody>
           </table>
-          <ul class="pagination justify-content-center">
-            <%= paginate @posts %>
-          </ul>
+            <p class="text-center"><%= link_to_next_page @posts, 'もっと見る', remote: true, id: 'view_more' %></p>
         </div>
       </div>
         <%= render 'bookmarks', {user: @user, user_bookmarks: @user_bookmarks} %>
