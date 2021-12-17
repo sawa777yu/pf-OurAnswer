@@ -1,6 +1,6 @@
 <% if @users.exists? %>
 <h2><%= @user.name %> 様はこちらの方々からフォローされています</h2>
-<table class="table search-result">
+<table class="table search-result"  id="user_followers">
   <thead>
     <tr>
       <th>プロフィール画像</th>
@@ -12,6 +12,8 @@
     <%= render 'public/relationships/user_table', users: @users %>
   </tbody>
 </table>
+  <p class="text-center"><%= link_to_next_page @users, 'もっと見る', remote: true, id: 'view_more' %></p>
+
 <% else %>
   <h3><%= @user.name %> 様はまだフォローされていません</h3>
 <% end %>

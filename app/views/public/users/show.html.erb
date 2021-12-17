@@ -3,41 +3,13 @@
     <div class= "col-md-2">
       <%= render 'info', user: @user %>
     </div>
-
-<% if @user.is_deleted == false %>
-
-    <div class= "col-md-9">
-      <div class="row my-1">
-        <div class="col-md-5">
-          <h5 class="offset-md-1 bg-light text-center"><%= @user.name %>様の投稿記事一覧</h5>
+      <% if @user.is_deleted == false %>
+        <div class= "col-md-9">
+          <%= render 'user_posts', {user: @user, posts: @posts} %>
+          <%= render 'bookmarks', {user: @user, user_bookmarks: @user_bookmarks} %>
         </div>
-      </div>
-      <div class="row mx-2">
-        <div class="col-md-12">
-          <table class="table table-hover table-inverse" id="user_posts">
-            <thead class="table-secondary">
-              <tr>
-                <th>投稿日時 <%= sort_order "created_at" %></th>
-                <th>ジャンル <%= sort_order "genre_id" %></th>
-                <th>タイトル</th>
-                <th>ステータス</th>
-                <th>ブックマーク数</th>
-              </tr>
-            </thead>
-            <tbody>
-              <%= render 'user_posts' %>
-            </tbody>
-          </table>
-            <p class="text-center"><%= link_to_next_page @posts, 'もっと見る', remote: true, id: 'view_more' %></p>
-        </div>
-      </div>
-        <%= render 'bookmarks', {user: @user, user_bookmarks: @user_bookmarks} %>
-    </div>
-
-
-    <% else %>
-    <p>こちらのユーザー様は退会されております。</p>
-    <% end %>
-
+      <% else %>
+        <p>こちらのユーザー様は退会されております。</p>
+      <% end %>
   </div>
 </div>
