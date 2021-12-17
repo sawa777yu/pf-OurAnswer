@@ -5,9 +5,9 @@ class Public::UsersController < ApplicationController
 
   def show
     @posts = if @user == current_user
-               @user.posts.includes(:genre).page(params[:page]).per(4).order("#{sort_column} #{sort_direction}")
+               @user.posts.includes(:genre).order("#{sort_column} #{sort_direction}")
              else
-               @user.posts.where(release: 'true').includes(:genre).page(params[:page]).per(4).order("#{sort_column} #{sort_direction}")
+               @user.posts.where(release: 'true').includes(:genre).order("#{sort_column} #{sort_direction}")
              end
     @user_bookmarks = @user.bookmark_posts.includes(:user, :genre).order("#{sort_column} #{sort_direction}")
   end

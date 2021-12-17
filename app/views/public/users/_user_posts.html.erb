@@ -1,5 +1,22 @@
-
-        <% @posts.each do |post| %>
+<div class="row my-1">
+  <div class="col-md-5">
+    <h5 class="offset-md-1 bg-light text-center"><%= user.name %>様の投稿記事一覧</h5>
+  </div>
+</div>
+<div class="row mx-2">
+  <div class="col-md-12">
+    <table class="table table-hover table-inverse">
+      <thead class="table-secondary">
+        <tr>
+          <th>投稿日時 <%= sort_order "created_at" %></th>
+          <th>ジャンル <%= sort_order "genre_id" %></th>
+          <th>タイトル</th>
+          <th>ステータス</th>
+          <th>ブックマーク数</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% posts.each do |post| %>
           <tr id="post_<%= post.id %>">
             <td><%= l post.created_at %></td>
             <td><%= post.genre.name %></td>
@@ -16,3 +33,7 @@
             <td><%= post.bookmarks.count %></td>
           </tr>
         <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

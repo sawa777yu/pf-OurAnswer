@@ -1,0 +1,2 @@
+$("#user_followings>tbody").append("<%= escape_javascript(render 'public/relationships/user_table', users: @users) %>");
+$("#view_more").replaceWith("<%= escape_javascript(link_to_next_page(@users, 'もっと見る', remote: true, id: 'view_more')) %>");
