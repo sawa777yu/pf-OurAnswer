@@ -1,5 +1,8 @@
 <% if @users.exists? %>
-<h2><%= @user.name %> 様はこちらの方々をフォローしています</h2>
+<h2 class="offset-md-1">
+  <%= link_to user_path(@user) do %><%= @user.name %>様<% end %> はこちらの方々をフォローしています
+</h2>
+
 <table class="table search-result" id="user_followings">
   <thead>
     <tr>
